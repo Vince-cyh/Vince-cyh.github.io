@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://vince-cyh.github.io/p/a-plain-markdown-post/'>
 
-<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="A Plain Markdown Post">
+<link rel="stylesheet" href="/scss/style.min.52a7e01b24705ea880e728db758e618f144e7edd2dbaaea82784a73e5ae63a25.css"><meta property='og:title' content="A Plain Markdown Post">
 <meta property='og:description' content="This sample post is mainly for blogdown users. If you do not use blogdown, you can skip the first section.\n1. Markdown or R Markdown This is a post written in plain Markdown (*.md) instead of R Markdown (*.Rmd). The major differences are:\nYou cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (```{r}); A plain Markdown post is rendered through Goldmark by default, and an R Markdown document is compiled by rmarkdown and Pandoc. There are differences in syntax between Goldmark&rsquo;s Markdown and Pandoc&rsquo;s Markdown. For example, Goldmark does not support LaTeX math and Pandoc does. I have added the KaTeX support to this theme (i.e., hugo-xmin)\n">
 <meta property='og:url' content='https://vince-cyh.github.io/p/a-plain-markdown-post/'>
 <meta property='og:site_name' content='Vince'>
@@ -618,8 +618,9 @@ ante libero. Sed hendrerit arcu lacus.</p>
     </section>
     
     <section class="powerby">
-        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.29.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        
+        
+
     </section>
 </footer>
 
@@ -708,7 +709,7 @@ ante libero. Sed hendrerit arcu lacus.</p>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script><script type="text/javascript" src="/ts/custom.89d9bb2c3c071ae8a261f67661c22b84ef67ba7b7a885dabd2bbd9ebef84ed40.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -719,6 +720,15 @@ ante libero. Sed hendrerit arcu lacus.</p>
 
         document.head.appendChild(customFont);
     }());
+</script>
+<script src="https://npm.elemecdn.com/nprogress@0.2.0/nprogress.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://npm.elemecdn.com/nprogress@0.2.0/nprogress.css" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
 </script>
 
     </body>
