@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Example on Vince</title>
-        <link>http://localhost:1313/categories/example/</link>
+        <link>https://vince-cyh.github.io/categories/example/</link>
         <description>Recent content in Example on Vince</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Vince</copyright>
-        <lastBuildDate>Wed, 14 Jun 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/example/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 14 Jun 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://vince-cyh.github.io/categories/example/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Another Note on A blogdown Tutorial</title>
-        <link>http://localhost:1313/note/another-note/</link>
+        <link>https://vince-cyh.github.io/note/another-note/</link>
         <pubDate>Wed, 14 Jun 2017 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/note/another-note/</guid>
+        <guid>https://vince-cyh.github.io/note/another-note/</guid>
         <description>&lt;p&gt;I just discovered &lt;a class=&#34;link&#34; href=&#34;https://www.apreshill.com/blog/2020-12-new-year-new-blogdown/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;an awesome tutorial&lt;/a&gt; on &lt;strong&gt;blogdown&lt;/strong&gt; written by Alison. I have to admit this is &lt;em&gt;the&lt;/em&gt; best &lt;strong&gt;blogdown&lt;/strong&gt; tutorial I have seen so far.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://www.apreshill.com/blog/2020-12-new-year-new-blogdown/03-blogdown-2021.png&#34;
@@ -29,10 +29,10 @@
         </item>
         <item>
         <title>A Quick Note on Two Beautiful Websites</title>
-        <link>http://localhost:1313/note/a-quick-note/</link>
+        <link>https://vince-cyh.github.io/note/a-quick-note/</link>
         <pubDate>Tue, 13 Jun 2017 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/note/a-quick-note/</guid>
+        <guid>https://vince-cyh.github.io/note/a-quick-note/</guid>
         <description>&lt;p&gt;To me, the two most impressive websites based on &lt;strong&gt;blogdown&lt;/strong&gt; are:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://robjhyndman.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -45,10 +45,10 @@
         </item>
         <item>
         <title>A Plain Markdown Post</title>
-        <link>http://localhost:1313/p/a-plain-markdown-post/</link>
+        <link>https://vince-cyh.github.io/p/a-plain-markdown-post/</link>
         <pubDate>Sun, 14 Feb 2016 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/a-plain-markdown-post/</guid>
+        <guid>https://vince-cyh.github.io/p/a-plain-markdown-post/</guid>
         <description>&lt;p&gt;This sample post is mainly for
 &lt;a class=&#34;link&#34; href=&#34;https://github.com/rstudio/blogdown&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;&lt;strong&gt;blogdown&lt;/strong&gt;&lt;/a&gt; users. If you do not use
@@ -240,10 +240,10 @@ ante libero. Sed hendrerit arcu lacus.&lt;/p&gt;
         </item>
         <item>
         <title>Lorem Ipsum</title>
-        <link>http://localhost:1313/p/lorem-ipsum/</link>
+        <link>https://vince-cyh.github.io/p/lorem-ipsum/</link>
         <pubDate>Thu, 23 Jul 2015 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/lorem-ipsum/</guid>
+        <guid>https://vince-cyh.github.io/p/lorem-ipsum/</guid>
         <description>&lt;p&gt;&lt;strong&gt;Lorem ipsum&lt;/strong&gt; dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore &lt;em&gt;magna aliqua&lt;/em&gt;. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
 &lt;p&gt;Quisque mattis volutpat lorem vitae feugiat. Praesent porta est quis porta imperdiet. Aenean porta, mi non cursus volutpat, mi est mollis libero, id suscipit orci urna a augue. In fringilla euismod lacus, vitae tristique massa ultricies vitae. Mauris accumsan ligula tristique, viverra nulla sed, porta sapien. Vestibulum facilisis nec nisl blandit convallis. Maecenas venenatis porta malesuada. Ut ac erat tortor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla sodales quam sit amet tincidunt egestas. In et turpis at orci vestibulum ullamcorper. Aliquam sed ante libero. Sed hendrerit arcu lacus.&lt;/p&gt;
 &lt;blockquote&gt;

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Tutorial on Vince</title>
-        <link>http://localhost:1313/tags/tutorial/</link>
+        <link>https://vince-cyh.github.io/tags/tutorial/</link>
         <description>Recent content in Tutorial on Vince</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Vince</copyright>
-        <lastBuildDate>Wed, 14 Jun 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/tutorial/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 14 Jun 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://vince-cyh.github.io/tags/tutorial/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Another Note on A blogdown Tutorial</title>
-        <link>http://localhost:1313/note/another-note/</link>
+        <link>https://vince-cyh.github.io/note/another-note/</link>
         <pubDate>Wed, 14 Jun 2017 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/note/another-note/</guid>
+        <guid>https://vince-cyh.github.io/note/another-note/</guid>
         <description>&lt;p&gt;I just discovered &lt;a class=&#34;link&#34; href=&#34;https://www.apreshill.com/blog/2020-12-new-year-new-blogdown/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;an awesome tutorial&lt;/a&gt; on &lt;strong&gt;blogdown&lt;/strong&gt; written by Alison. I have to admit this is &lt;em&gt;the&lt;/em&gt; best &lt;strong&gt;blogdown&lt;/strong&gt; tutorial I have seen so far.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://www.apreshill.com/blog/2020-12-new-year-new-blogdown/03-blogdown-2021.png&#34;

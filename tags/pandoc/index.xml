@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Pandoc on Vince</title>
-        <link>http://localhost:1313/tags/pandoc/</link>
+        <link>https://vince-cyh.github.io/tags/pandoc/</link>
         <description>Recent content in Pandoc on Vince</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Vince</copyright>
-        <lastBuildDate>Sun, 14 Feb 2016 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/pandoc/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 14 Feb 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://vince-cyh.github.io/tags/pandoc/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>A Plain Markdown Post</title>
-        <link>http://localhost:1313/p/a-plain-markdown-post/</link>
+        <link>https://vince-cyh.github.io/p/a-plain-markdown-post/</link>
         <pubDate>Sun, 14 Feb 2016 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/a-plain-markdown-post/</guid>
+        <guid>https://vince-cyh.github.io/p/a-plain-markdown-post/</guid>
         <description>&lt;p&gt;This sample post is mainly for
 &lt;a class=&#34;link&#34; href=&#34;https://github.com/rstudio/blogdown&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;&lt;strong&gt;blogdown&lt;/strong&gt;&lt;/a&gt; users. If you do not use
