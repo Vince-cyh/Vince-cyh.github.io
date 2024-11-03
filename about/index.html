@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://vince-cyh.github.io/about/'>
 
-<link rel="stylesheet" href="/scss/style.min.52a7e01b24705ea880e728db758e618f144e7edd2dbaaea82784a73e5ae63a25.css"><meta property='og:title' content="About Hugo XMin">
+<link rel="stylesheet" href="/scss/style.min.0572c4f71368ea233e2117a98fa1cf053cb2031c4fa55635474cea8a09c630f6.css"><meta property='og:title' content="About Hugo XMin">
 <meta property='og:description' content="XMin is the first Hugo theme I have designed. The original reason that I wrote it was I needed a minimal example of Hugo themes when I was writing the blogdown book. Basically I wanted a simple theme that supports a navigation menu, a home page, other single pages, lists of pages, blog posts, categories, tags, and RSS. That is all. Nothing fancy. In terms of CSS and JavaScript, I really want to keep them minimal. In fact, this theme does not contain any JavaScript code at all, although on this example website I did introduce some JavaScript code (still relatively simple anyway). The theme does not contain any images, either, and is pretty much a plain-text theme.\n">
 <meta property='og:url' content='https://vince-cyh.github.io/about/'>
 <meta property='og:site_name' content='Vince'>
@@ -574,6 +574,37 @@
         if (document.readyState === "complete") NProgress.done();
     });
 </script>
+<div id="particles-js"></div>
+
+<script src=https://vince-cyh.github.io/background/particles.min.js></script>
+<script>
+  particlesJS.load('particles-js', 'https:\/\/vince-cyh.github.io\/background\/particlesjs-config.json', function() {
+    console.log('particles.js loaded - callback');
+  });
+</script>
+
+<style>
+  #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+</style>
+
+<style>
+  @font-face {
+    font-family: '游趣体';
+    src: url('https://vince-cyh.github.io/font/ChildFunSans-Demo.ttf') format('truetype');
+  }
+
+  :root {
+    --base-font-family: '游趣体';
+    --code-font-family: '游趣体';
+  }
+</style>
+
 
     </body>
 </html>

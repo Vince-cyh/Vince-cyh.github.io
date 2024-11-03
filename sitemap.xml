@@ -3,112 +3,80 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://vince-cyh.github.io/</loc>
-    <lastmod>2024-11-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/categories/</loc>
-    <lastmod>2024-11-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/post/</loc>
-    <lastmod>2024-11-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://vince-cyh.github.io/categories/%E7%BB%98%E7%94%BB/</loc>
+  </url><url>
+    <loc>https://vince-cyh.github.io/p/paintings/</loc>
   </url><url>
     <loc>https://vince-cyh.github.io/categories/%E7%94%9F%E6%B4%BB%E5%88%86%E4%BA%AB/</loc>
-    <lastmod>2024-11-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/p/a-good-begging/</loc>
-    <lastmod>2024-11-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/categories/%E8%AF%AD%E5%BD%95/</loc>
-    <lastmod>2024-11-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/page/</loc>
-    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/archives/</loc>
-    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/tags/css/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/tags/html/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/tags/markdown/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/p/markdown-syntax-guide/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/categories/syntax/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/tags/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/tags/themes/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/categories/themes/</loc>
-    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/p/placeholder-text/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/tags/tag-with-whitespaces/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/categories/test/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/categories/test-with-whitespaces/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/tags/text/</loc>
-    <lastmod>2019-03-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/p/math-typesetting/</loc>
-    <lastmod>2019-03-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/tags/emoji/</loc>
-    <lastmod>2019-03-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/p/emoji-support/</loc>
-    <lastmod>2019-03-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/note/another-note/</loc>
-    <lastmod>2017-06-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/categories/example/</loc>
-    <lastmod>2017-06-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/note/</loc>
-    <lastmod>2017-06-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/tags/tutorial/</loc>
-    <lastmod>2017-06-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/note/a-quick-note/</loc>
-    <lastmod>2017-06-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/p/a-plain-markdown-post/</loc>
-    <lastmod>2016-02-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/tags/blogdown/</loc>
-    <lastmod>2016-02-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/categories/hugo/</loc>
-    <lastmod>2016-02-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/tags/mathjax/</loc>
-    <lastmod>2016-02-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/tags/pandoc/</loc>
-    <lastmod>2016-02-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/tags/rstudio/</loc>
-    <lastmod>2016-02-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/p/lorem-ipsum/</loc>
-    <lastmod>2015-07-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://vince-cyh.github.io/about/</loc>
   </url><url>
