@@ -1,0 +1,3187 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="展示一个以盲人为主题的游戏demo开发过程">
+<title>The Unseen World 游戏开发</title>
+
+<link rel='canonical' href='https://vince-cyh.github.io/p/the-unseen-world-demo/'>
+
+<link rel="stylesheet" href="/scss/style.min.a7c0b06c4ac5363e9f81765912c875db56bd56a519895b75a291dd95d0cd4266.css"><meta property='og:title' content="The Unseen World 游戏开发">
+<meta property='og:description' content="展示一个以盲人为主题的游戏demo开发过程">
+<meta property='og:url' content='https://vince-cyh.github.io/p/the-unseen-world-demo/'>
+<meta property='og:site_name' content='Vince'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Unity' /><meta property='article:tag' content='游戏开发' /><meta property='article:published_time' content='2024-03-01T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-11-04T21:01:14&#43;08:00'/><meta property='og:image' content='https://vince-cyh.github.io/p/the-unseen-world-demo/title.jpg' />
+<meta name="twitter:title" content="The Unseen World 游戏开发">
+<meta name="twitter:description" content="展示一个以盲人为主题的游戏demo开发过程"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://vince-cyh.github.io/p/the-unseen-world-demo/title.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu18432521338982264225.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🙃</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Vince</a></h1>
+            <h2 class="site-description">欢迎来到我的博客，此博客主要展示我的生活和学习记录~</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/192114322?spm_id_from=333.1007.0.0'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Vince-cyh'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/plan/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-checklist"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8" /><path d="M14 19l2 2l4 -4" /><path d="M9 8h4" /><path d="M9 12h2" /></svg>
+                
+                <span>更新计划</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/link/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>技术链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#游戏简介">游戏简介</a></li>
+    <li><a href="#游戏效果展示">游戏效果展示</a></li>
+    <li><a href="#游戏设计思路">游戏设计思路</a>
+      <ol>
+        <li><a href="#游戏玩法设计">游戏玩法设计</a></li>
+        <li><a href="#游戏系统设计">游戏系统设计</a></li>
+        <li><a href="#游戏场景设计">游戏场景设计</a></li>
+        <li><a href="#游戏角色设计">游戏角色设计</a></li>
+        <li><a href="#游戏音乐设计">游戏音乐设计</a></li>
+        <li><a href="#游戏美术元素设计">游戏美术元素设计</a></li>
+        <li><a href="#游戏文案设计">游戏文案设计</a></li>
+        <li><a href="#游戏动画设计">游戏动画设计</a></li>
+      </ol>
+    </li>
+    <li><a href="#游戏场景实现">游戏场景实现</a>
+      <ol>
+        <li><a href="#开始结束菜单">开始/结束菜单</a></li>
+        <li><a href="#引导场景">引导场景</a></li>
+        <li><a href="#马路场景">马路场景</a></li>
+        <li><a href="#主场景">主场景</a></li>
+        <li><a href="#对战场景">对战场景</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/the-unseen-world-demo/">
+                <img src="/p/the-unseen-world-demo/title_hu2018237820240201481.jpg"
+                        srcset="/p/the-unseen-world-demo/title_hu2018237820240201481.jpg 800w, /p/the-unseen-world-demo/title_hu8283485329313927682.jpg 1600w"
+                        width="800" 
+                        height="533" 
+                        loading="lazy"
+                        alt="Featured image of post The Unseen World 游戏开发" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%94%9F/" style="background-color: #2a9d8f; color: #fff;">
+                技术人生
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/the-unseen-world-demo/">The Unseen World 游戏开发</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            展示一个以盲人为主题的游戏demo开发过程
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-03-01</time>
+            </div>
+        
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    Nov 04, 2024 21:01 &#43;0800
+                </time>
+            </div>
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="游戏简介">游戏简介
+</h2><p>The Unseen World是一款具有深刻社会意义的2D角色扮演游戏，旨在通过模拟视障人士的生活体验，让玩家从第三人称视角感受他们的日常挑战和内心世界。游戏设计的核心在于教育和启发，通过沉浸式的互动，我们希望提升公众对视障群体的理解、同情以及对必要辅助设施的意识。</p>
+<p>游戏的可运行文件可以通过<a class="link" href="https://github.com/Vince-cyh/The-Unseen-World-demo"  target="_blank" rel="noopener"
+    >下载链接</a>下载体验。</p>
+<h2 id="游戏效果展示">游戏效果展示
+</h2><p>开始菜单：显示游戏标题、背景以及进入游戏、教程按钮和退出游戏按钮，按钮默认选中进入游戏按钮，可以通过鼠标也可以通过键盘进行选择。</p>
+<p><img src="/p/the-unseen-world-demo/media/image1.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image1_hu15394622433181653470.png 480w, /p/the-unseen-world-demo/media/image1_hu9040481999716760093.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>引导场景：玩家与NPC进行对话，获取游戏操作提示。</p>
+<p><img src="/p/the-unseen-world-demo/media/image2.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image2_hu329390173251096119.png 480w, /p/the-unseen-world-demo/media/image2_hu11143610627131975406.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>过渡场景：文字以打印的效果呈现在屏幕上，讲述游戏背景和关卡指引。</p>
+<p><img src="/p/the-unseen-world-demo/media/image3.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image3_hu4159311089423272300.png 480w, /p/the-unseen-world-demo/media/image3_hu15734253082448893805.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>马路场景：玩家通过声音提示通过马路，在成功和失败的情况下都有相应提示。</p>
+<p><img src="/p/the-unseen-world-demo/media/image5.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image5_hu6768314344786486702.png 480w, /p/the-unseen-world-demo/media/image5_hu14078069268207722417.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image4.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image4_hu1404130478418938355.png 480w, /p/the-unseen-world-demo/media/image4_hu5669978199173203124.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>主场景：玩家视野受限，可自由探索地图，与地图交互，进行对战或与NPC对话。HUD显示玩家当前等级与血量。其中，玩家的视野范围和等级挂钩，等级越高，视野范围越广，象征着玩家在体验盲人生活的过程中经历重重苦难，逐渐获得视野，从而理解盲人。</p>
+<p><img src="/p/the-unseen-world-demo/media/image6.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image6_hu7149328466418744819.png 480w, /p/the-unseen-world-demo/media/image6_hu1173262494086924523.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>场景内有很多可以互动的人和物品，他们的头顶都标有感叹号，玩家可以按Z键与NPC互动，也可以和告示牌互动查看一些重要的讯息，感叹号也会在互动后消失。</p>
+<p><img src="/p/the-unseen-world-demo/media/image7.png"
+	width="1322"
+	height="723"
+	srcset="/p/the-unseen-world-demo/media/image7_hu6556984208680929315.png 480w, /p/the-unseen-world-demo/media/image7_hu11086061635575215213.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="182"
+		data-flex-basis="438px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image8.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image8_hu6532812024665114639.png 480w, /p/the-unseen-world-demo/media/image8_hu4906270883155663732.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>玩家走到伤害区域掉血，可通过拾取道具回血。</p>
+<p><img src="/p/the-unseen-world-demo/media/image9.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image9_hu11036424648980033095.png 480w, /p/the-unseen-world-demo/media/image9_hu14279370046663295268.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image10.png"
+	width="520"
+	height="361"
+	srcset="/p/the-unseen-world-demo/media/image10_hu5824752728754576647.png 480w, /p/the-unseen-world-demo/media/image10_hu14709988765262536252.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="345px"
+	
+></p>
+<p>玩家会在不同的情景遇到不同的敌人，在草地遇到螳螂，遇到惹事的坏人npc，甚至会遇到欺骗玩家去打开的宝箱怪，触发回合制战斗。</p>
+<p><img src="/p/the-unseen-world-demo/media/image11.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image11_hu4722632266442876044.png 480w, /p/the-unseen-world-demo/media/image11_hu12185547238557880263.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image12.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image12_hu5582632601884002084.png 480w, /p/the-unseen-world-demo/media/image12_hu16573650832244155807.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>玩家触发对战：可选择不同策略应对，包括不同攻击效果，切换角色与逃跑。其中，玩家的血量是与地图血量同步的，任意一个场景的主角在血量为0时直接游戏失败。</p>
+<p><img src="/p/the-unseen-world-demo/media/image13.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image13_hu9131673076026585357.png 480w, /p/the-unseen-world-demo/media/image13_hu5244497602725823948.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>可以切换战斗角色，不同角色有不同的专长，通过不同角色的攻击配合可以增加战斗效率。</p>
+<p><img src="/p/the-unseen-world-demo/media/image14.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image14_hu2107779286654837616.png 480w, /p/the-unseen-world-demo/media/image14_hu187895530173998506.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>招式主要分为控制类技能、直伤技能和特攻技能，有些招式是上述三种类型的组合效果，有的既能打出控制延缓敌人行动又能回合内出伤，也有的既能为敌人挂上负面效果又能打出伤害。在使用招式时，会触发角色行动动画。</p>
+<p><img src="/p/the-unseen-world-demo/media/image15.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image15_hu14705426379743906062.png 480w, /p/the-unseen-world-demo/media/image15_hu15378587343865246345.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>在任意一方的回合内，若存在负面效果，会通过画面下面的方框打印状态信息，若该负面效果会对该对象造成伤害，也会同步更新血条变化的动画。</p>
+<p><img src="/p/the-unseen-world-demo/media/image16.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image16_hu5323650499641294037.png 480w, /p/the-unseen-world-demo/media/image16_hu3889840296631066920.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>双方入场时会播放入场动画，当任意一方倒下时也会播放对应的退场动画。</p>
+<p><img src="/p/the-unseen-world-demo/media/image17.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image17_hu4097358486502210580.png 480w, /p/the-unseen-world-demo/media/image17_hu14515999450507402328.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>战斗结束后，当前场上的角色会获得经验值，经验值达到下一等级所需的经验就会升级并触发升级音效，同时经验条会回退到0重新开始。若当前场上获胜的不是主角而是她的队友，主角还会在队友获得完经验值后也换到场上来获得等量的经验值。另外，升级以后血量会回复到满血。</p>
+<p><img src="/p/the-unseen-world-demo/media/image18.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image18_hu730355916332111618.png 480w, /p/the-unseen-world-demo/media/image18_hu1954257402693213548.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>玩家达到一定等级后，视野范围变到最大，游戏通关，显示通关界面，游戏结束。</p>
+<p><img src="/p/the-unseen-world-demo/media/image19.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image19_hu12862444674104223630.png 480w, /p/the-unseen-world-demo/media/image19_hu8052514706501725668.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image20.png"
+	width="1486"
+	height="830"
+	srcset="/p/the-unseen-world-demo/media/image20_hu7993395185012249017.png 480w, /p/the-unseen-world-demo/media/image20_hu3016778371901103336.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="429px"
+	
+></p>
+<p>若玩家血量消耗完，显示失败界面。</p>
+<p><img src="/p/the-unseen-world-demo/media/image21.png"
+	width="920"
+	height="506"
+	srcset="/p/the-unseen-world-demo/media/image21_hu1405678723191895954.png 480w, /p/the-unseen-world-demo/media/image21_hu6486395430012785903.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="181"
+		data-flex-basis="436px"
+	
+></p>
+<h2 id="游戏设计思路">游戏设计思路
+</h2><h3 id="游戏玩法设计">游戏玩法设计
+</h3><p>在这款2D横板角色扮演游戏中，玩家将扮演一位盲人角色，体验独特的冒险旅程。游戏开始于一个简洁的开始菜单，提供新游戏和退出选项。进入游戏后，玩家首先会经历一个引导场景，学习如何移动和进行键盘控制等基本操作。</p>
+<p>接着，玩家将面临第一个关卡：马路场景。在这里，玩家需要仔细聆听交通信号灯的声音，找到安全的过马路时机。</p>
+<p>随后，玩家将进入主场景，这是一个开放的世界，玩家可以自由探索，与NPC进行对话，获取任务和信息。在探索过程中，玩家可能会遇到各种障碍和困难。</p>
+<p>当玩家遇到敌人时，将进入战斗场景。这是一个回合制的战斗系统，玩家需要通过合适的策略，进行反击或躲避。玩家也可以与同伴一起进行战斗，获取经验升级。</p>
+<p>如果玩家成功克服所有挑战，将达到成功通关的等级。如果玩家在某个环节失败，比如在战斗中被击败或未能完成特定任务，游戏将进入游戏失败的场景，玩家可以选择重新开始。</p>
+<p><img src="/p/the-unseen-world-demo/media/image22.png"
+	width="1037"
+	height="647"
+	srcset="/p/the-unseen-world-demo/media/image22_hu4083896660123681908.png 480w, /p/the-unseen-world-demo/media/image22_hu11845043876899948225.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="384px"
+	
+></p>
+<h3 id="游戏系统设计">游戏系统设计
+</h3><p>游戏主要分为两大系统：世界探索系统和战斗系统。</p>
+<p>世界探索时，由PlayerController进行玩家操作的更新；在战斗时，由BattleSystem进行玩家操作的更新。</p>
+<p>在世界探索的过程中，会遇到部分地形能够触发战斗，屏幕视角便会转向战斗场景，进入回合制战斗。</p>
+<p><img src="/p/the-unseen-world-demo/media/image23.png"
+	width="416"
+	height="156"
+	srcset="/p/the-unseen-world-demo/media/image23_hu16062918332408387298.png 480w, /p/the-unseen-world-demo/media/image23_hu14013566040807604739.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="266"
+		data-flex-basis="640px"
+	
+></p>
+<p>此时游戏操作由BattleSystem的HandleUpdate函数进行更新，不会影响主世界人物的移动。</p>
+<p><img src="/p/the-unseen-world-demo/media/image24.png"
+	width="479"
+	height="356"
+	srcset="/p/the-unseen-world-demo/media/image24_hu9480489804508486929.png 480w, /p/the-unseen-world-demo/media/image24_hu13973079890213959921.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="134"
+		data-flex-basis="322px"
+	
+></p>
+<p>若战斗结束，将切换回主世界的Main Camera，并由PlayerController接管玩家操作的更新。</p>
+<p><img src="/p/the-unseen-world-demo/media/image25.png"
+	width="442"
+	height="217"
+	srcset="/p/the-unseen-world-demo/media/image25_hu3735887111217717138.png 480w, /p/the-unseen-world-demo/media/image25_hu9266420388372826966.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="203"
+		data-flex-basis="488px"
+	
+></p>
+<p>此时由PlayerController的HandleUpdate进行操作的更新，玩家能够继续进行世界的探索，自由移动。</p>
+<p><img src="/p/the-unseen-world-demo/media/image26.png"
+	width="517"
+	height="715"
+	srcset="/p/the-unseen-world-demo/media/image26_hu16028048962023186119.png 480w, /p/the-unseen-world-demo/media/image26_hu6124965120295320413.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="72"
+		data-flex-basis="173px"
+	
+></p>
+<h3 id="游戏场景设计">游戏场景设计
+</h3><p>游戏采用2D像素风格地图，地图是由瓦片素材堆叠而成的。</p>
+<p>首先将素材切割成瓦片调色板：右键点击素材图片，选择Create-&gt;2D-&gt;Tile Palette创建瓦片调色板。</p>
+<p><img src="/p/the-unseen-world-demo/media/image27.png"
+	width="1209"
+	height="991"
+	srcset="/p/the-unseen-world-demo/media/image27_hu3376128690359391213.png 480w, /p/the-unseen-world-demo/media/image27_hu13329877299738400237.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="121"
+		data-flex-basis="292px"
+	
+></p>
+<p>在调色板中选择合适的瓦片大小进行分割。</p>
+<p><img src="/p/the-unseen-world-demo/media/image28.png"
+	width="496"
+	height="894"
+	srcset="/p/the-unseen-world-demo/media/image28_hu14418748126855044836.png 480w, /p/the-unseen-world-demo/media/image28_hu813835200570574203.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="55"
+		data-flex-basis="133px"
+	
+></p>
+<p>在菜单栏中选择Window-&gt;2D-&gt;Tile Palette调出调色板窗口，这时可以用瓦片调色板对TileMap类型的对象进行编辑。</p>
+<p><img src="/p/the-unseen-world-demo/media/image29.png"
+	width="1897"
+	height="734"
+	srcset="/p/the-unseen-world-demo/media/image29_hu7710801786751676232.png 480w, /p/the-unseen-world-demo/media/image29_hu15517974422486997669.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="258"
+		data-flex-basis="620px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image30.png"
+	width="1904"
+	height="1012"
+	srcset="/p/the-unseen-world-demo/media/image30_hu9032599606145330789.png 480w, /p/the-unseen-world-demo/media/image30_hu3650807468657647817.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="188"
+		data-flex-basis="451px"
+	
+></p>
+<p>游戏的地图分两个层级：Background图层位于最下方，只起到背景的作用，不影响游戏逻辑。SolidObject图层除了背景功能，还添加了碰撞信息，用来限制角色的移动。</p>
+<p>对SolidObject图层添加Composite Collider 2D，可令图层上的瓦片具有碰撞属性。</p>
+<p><img src="/p/the-unseen-world-demo/media/image31.png"
+	width="493"
+	height="480"
+	srcset="/p/the-unseen-world-demo/media/image31_hu17966576005790966237.png 480w, /p/the-unseen-world-demo/media/image31_hu13098814046839735985.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="102"
+		data-flex-basis="246px"
+	
+></p>
+<p>在主场景中，由于涉及到交互对象的判断还有触发战斗的地形，我们添加了其他的功能性Layer，例如InjureLayer，NPCLayer等。</p>
+<p><img src="/p/the-unseen-world-demo/media/image32.png"
+	width="224"
+	height="346"
+	srcset="/p/the-unseen-world-demo/media/image32_hu10698417507000184828.png 480w, /p/the-unseen-world-demo/media/image32_hu16134345064897739240.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="64"
+		data-flex-basis="155px"
+	
+></p>
+<p>各种地形画在不同的层级中，分布在地图的各个角落。</p>
+<p>草地地形用于触发回合制战斗。</p>
+<p><img src="/p/the-unseen-world-demo/media/image33.png"
+	width="447"
+	height="204"
+	srcset="/p/the-unseen-world-demo/media/image33_hu1368644595384553974.png 480w, /p/the-unseen-world-demo/media/image33_hu5493586889763458627.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="219"
+		data-flex-basis="525px"
+	
+></p>
+<p>骷髅地形用于扣除玩家的血量。</p>
+<p><img src="/p/the-unseen-world-demo/media/image34.png"
+	width="270"
+	height="161"
+	srcset="/p/the-unseen-world-demo/media/image34_hu8684671019882290881.png 480w, /p/the-unseen-world-demo/media/image34_hu3629596678485525261.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="167"
+		data-flex-basis="402px"
+	
+></p>
+<p>还有地图上分布各地的水果，用于为玩家回复血量，它们属于水果图层。</p>
+<p><img src="/p/the-unseen-world-demo/media/image35.png"
+	width="101"
+	height="94"
+	srcset="/p/the-unseen-world-demo/media/image35_hu5483557118448816531.png 480w, /p/the-unseen-world-demo/media/image35_hu5543527123118158071.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="107"
+		data-flex-basis="257px"
+	
+><img src="/p/the-unseen-world-demo/media/image36.png"
+	width="111"
+	height="96"
+	srcset="/p/the-unseen-world-demo/media/image36_hu15119300068537669584.png 480w, /p/the-unseen-world-demo/media/image36_hu10047875143739045843.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="115"
+		data-flex-basis="277px"
+	
+><img src="/p/the-unseen-world-demo/media/image37.png"
+	width="127"
+	height="107"
+	srcset="/p/the-unseen-world-demo/media/image37_hu11642117267164075354.png 480w, /p/the-unseen-world-demo/media/image37_hu7243900787665388458.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="118"
+		data-flex-basis="284px"
+	
+><img src="/p/the-unseen-world-demo/media/image38.png"
+	width="145"
+	height="139"
+	srcset="/p/the-unseen-world-demo/media/image38_hu9655242430565367697.png 480w, /p/the-unseen-world-demo/media/image38_hu11744328521385224377.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="104"
+		data-flex-basis="250px"
+	
+></p>
+<p>地图上分布各地的还有告示牌、NPC、宝箱等交互场景，属于互动层。</p>
+<p><img src="/p/the-unseen-world-demo/media/image39.png"
+	width="400"
+	height="316"
+	srcset="/p/the-unseen-world-demo/media/image39_hu14026418333833667501.png 480w, /p/the-unseen-world-demo/media/image39_hu291465108334297558.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="126"
+		data-flex-basis="303px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image40.png"
+	width="101"
+	height="102"
+	srcset="/p/the-unseen-world-demo/media/image40_hu6188925133317798745.png 480w, /p/the-unseen-world-demo/media/image40_hu2980089142909728055.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="99"
+		data-flex-basis="237px"
+	
+></p>
+<p>下面是一些主世界的其他场景设计，暂时只有美观作用，以后可以进一步开发功能。</p>
+<p><img src="/p/the-unseen-world-demo/media/image41.png"
+	width="336"
+	height="325"
+	srcset="/p/the-unseen-world-demo/media/image41_hu17346310443441112296.png 480w, /p/the-unseen-world-demo/media/image41_hu6996995460875001756.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="103"
+		data-flex-basis="248px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image42.png"
+	width="450"
+	height="207"
+	srcset="/p/the-unseen-world-demo/media/image42_hu15680435470224717016.png 480w, /p/the-unseen-world-demo/media/image42_hu3078760939853762794.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="217"
+		data-flex-basis="521px"
+	
+></p>
+<h3 id="游戏角色设计">游戏角色设计
+</h3><p>PlayerController脚本负责处理角色移动。玩家可以通过键盘的W, A, S,
+D和方向键控制角色移动。</p>
+<p>脚本的HandleUpdate函数通过Input.GetAxisRaw(&quot;Horizontal&quot;)和Input.GetAxisRaw(&quot;Vertical&quot;)获取玩家的输入，分别对应水平和垂直方向。如果同时按下水平和垂直方向键，将垂直输入置为0，以避免对角线移动。计算出玩家想要到达的新位置targetPos。</p>
+<p>使用IsWalkable(targetPos)方法检查目标位置是否有障碍物。如果目标位置可行走，通过协程Move(targetPos)平滑地移动玩家到目标位置。</p>
+<p><img src="/p/the-unseen-world-demo/media/image43.png"
+	width="585"
+	height="648"
+	srcset="/p/the-unseen-world-demo/media/image43_hu1896453946715608375.png 480w, /p/the-unseen-world-demo/media/image43_hu13358775919868547583.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="90"
+		data-flex-basis="216px"
+	
+></p>
+<p>IsWalkable方法是用来检查targetPos是否被solidObjects图层的障碍物占据。OverlapCircle方法检测在targetPos位置是否有solidObjects图层的物体与周围0.3的圆形区域重叠。如果检测到了障碍物，则目标位置不可行走，这样就添加了碰撞效果。</p>
+<p><img src="/p/the-unseen-world-demo/media/image44.png"
+	width="934"
+	height="236"
+	srcset="/p/the-unseen-world-demo/media/image44_hu8017570181887933418.png 480w, /p/the-unseen-world-demo/media/image44_hu285801936217803525.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="395"
+		data-flex-basis="949px"
+	
+></p>
+<p>角色移动是由协程实现的。协程在移动过程中会不断检查是否已经足够接近目标位置，如果已经非常接近，则将对象的位置直接设置为目标位置，并结束协程。在整个移动过程中，isMoving变量被设置为true。</p>
+<p><img src="/p/the-unseen-world-demo/media/image45.png"
+	width="1291"
+	height="352"
+	srcset="/p/the-unseen-world-demo/media/image45_hu14745332638283432884.png 480w, /p/the-unseen-world-demo/media/image45_hu7637223762611435938.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="366"
+		data-flex-basis="880px"
+	
+></p>
+<h3 id="游戏音乐设计">游戏音乐设计
+</h3><p>我们利用Unity引擎的音频系统创建了丰富的环境声音，包括背景音乐和音效。</p>
+<p>背景音乐根据场景设置，有自由探索地图时的舒缓背景音乐，还有战斗场景传达激烈紧张氛围的背景音乐。在玩家与地图互动时，例如拾取物品和收到伤害，会有相应的音效提示，增加了游戏的沉浸感。</p>
+<p>为了辅助玩家导航，我们设计了特定的导航声音提示，如马路场景的交通信号声音。</p>
+<p><img src="/p/the-unseen-world-demo/media/image46.png"
+	width="1049"
+	height="160"
+	srcset="/p/the-unseen-world-demo/media/image46_hu7075163908164028836.png 480w, /p/the-unseen-world-demo/media/image46_hu10237281894119690466.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="655"
+		data-flex-basis="1573px"
+	
+></p>
+<p>添加背景音乐：创建一个Audio Source Component，作为背景音乐的容器。</p>
+<p>把项目面板中的音乐文件拖动至AudioClip中，勾选Play On Awake，开始时播放。同时勾选loop，循环播放。</p>
+<p><img src="/p/the-unseen-world-demo/media/image47.png"
+	width="981"
+	height="337"
+	srcset="/p/the-unseen-world-demo/media/image47_hu13234599309634628582.png 480w, /p/the-unseen-world-demo/media/image47_hu2848941961477286402.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="291"
+		data-flex-basis="698px"
+	
+></p>
+<p>在脚本中获取这个AudioSource，并在触发特定效果时播放。</p>
+<p><img src="/p/the-unseen-world-demo/media/image48.png"
+	width="663"
+	height="486"
+	srcset="/p/the-unseen-world-demo/media/image48_hu13165123692627099376.png 480w, /p/the-unseen-world-demo/media/image48_hu7862892197475599010.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="136"
+		data-flex-basis="327px"
+	
+></p>
+<p>Play()和Stop()控制音乐播放。</p>
+<p>PlayOneShot()可以在同一个时间播放多种AudioClip。</p>
+<p><img src="/p/the-unseen-world-demo/media/image49.png"
+	width="421"
+	height="599"
+	srcset="/p/the-unseen-world-demo/media/image49_hu16465679259495336640.png 480w, /p/the-unseen-world-demo/media/image49_hu9231052668444974015.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="70"
+		data-flex-basis="168px"
+	
+></p>
+<p>其中，拾取音效等短音频需要使用Audio Clip存储，并从Resources文件夹读取出来，通过控制音频文件的脚本中的函数，使用AudioSource.PlayOneShot播放。</p>
+<p><img src="/p/the-unseen-world-demo/media/image50.png"
+	width="341"
+	height="239"
+	srcset="/p/the-unseen-world-demo/media/image50_hu5108546770762482164.png 480w, /p/the-unseen-world-demo/media/image50_hu7488498569026817484.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="142"
+		data-flex-basis="342px"
+	
+></p>
+<p>而部分背景音乐通关脚本控制，获取场景中的音频对象，通过SoundManager脚本进行控制播放，例如人物从走路到触发战斗就需要通过这一点改变背景音乐。</p>
+<p><img src="/p/the-unseen-world-demo/media/image51.png"
+	width="364"
+	height="381"
+	srcset="/p/the-unseen-world-demo/media/image51_hu6047929330309866751.png 480w, /p/the-unseen-world-demo/media/image51_hu14784197584918233176.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="95"
+		data-flex-basis="229px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image52.png"
+	width="444"
+	height="205"
+	srcset="/p/the-unseen-world-demo/media/image52_hu858621995509843844.png 480w, /p/the-unseen-world-demo/media/image52_hu18064584558079909274.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="216"
+		data-flex-basis="519px"
+	
+></p>
+<p>音乐风格主要设计为轻缓柔和与激昂紧凑两种风格，在探索地图的适合，风格轻缓，在进入回合制战斗以后，音乐风格切换为激昂。而游戏失败则采用低沉忧郁的音乐风格，游戏通关则是欢快的音乐风格。</p>
+<h3 id="游戏美术元素设计">游戏美术元素设计
+</h3><p>设定上，玩家需要扮演一个盲人进行世界的探索，在探索的过程中体验盲人生活的艰辛。因此我们选择乡镇风格的美术设计，不仅能够反映出盲人在一般环境下的艰辛，还能模拟盲人因看不见路误入危险区域的情景。</p>
+<p><img src="/p/the-unseen-world-demo/media/image53.png"
+	width="620"
+	height="551"
+	srcset="/p/the-unseen-world-demo/media/image53_hu6689841882895807942.png 480w, /p/the-unseen-world-demo/media/image53_hu12737036698907254938.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="112"
+		data-flex-basis="270px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image54.png"
+	width="274"
+	height="439"
+	srcset="/p/the-unseen-world-demo/media/image54_hu16655103985906315142.png 480w, /p/the-unseen-world-demo/media/image54_hu17806525409449532203.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="62"
+		data-flex-basis="149px"
+	
+></p>
+<p>而主角作为一个盲人，形象需要符合乡村气息，同时又手无缚鸡之力，因此我们选择形象如下。</p>
+<p><img src="/p/the-unseen-world-demo/media/image55.png"
+	width="151"
+	height="99"
+	srcset="/p/the-unseen-world-demo/media/image55_hu14794220747630572226.png 480w, /p/the-unseen-world-demo/media/image55_hu11626605858441152020.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="152"
+		data-flex-basis="366px"
+	
+></p>
+<p>主角的初始伙伴则是三位风格迥异的少女，</p>
+<p><img src="/p/the-unseen-world-demo/media/image56.png"
+	width="332"
+	height="87"
+	srcset="/p/the-unseen-world-demo/media/image56_hu9260161221018243537.png 480w, /p/the-unseen-world-demo/media/image56_hu13381433414239300018.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="381"
+		data-flex-basis="915px"
+	
+></p>
+<p>游戏中遇到的敌人包括RPG风格常见的战士，</p>
+<p><img src="/p/the-unseen-world-demo/media/image57.png"
+	width="186"
+	height="187"
+	srcset="/p/the-unseen-world-demo/media/image57_hu11723997987883645971.png 480w, /p/the-unseen-world-demo/media/image57_hu9743889131576922478.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="99"
+		data-flex-basis="238px"
+	
+></p>
+<p>也包括昆虫树精一些大家常常认为森林中会出现的怪物：</p>
+<p><img src="/p/the-unseen-world-demo/media/image58.png"
+	width="99"
+	height="76"
+	srcset="/p/the-unseen-world-demo/media/image58_hu1986893381331511939.png 480w, /p/the-unseen-world-demo/media/image58_hu5579037672547107568.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="130"
+		data-flex-basis="312px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image59.png"
+	width="109"
+	height="110"
+	srcset="/p/the-unseen-world-demo/media/image59_hu15620296108218561301.png 480w, /p/the-unseen-world-demo/media/image59_hu2901960738094142657.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="99"
+		data-flex-basis="237px"
+	
+></p>
+<p>战斗的场景其实准备了适配不同区域的背景，不过由于开发进度只使用到了草地战斗场景，</p>
+<p><img src="/p/the-unseen-world-demo/media/image60.png"
+	width="1600"
+	height="902"
+	srcset="/p/the-unseen-world-demo/media/image60_hu175259961870806974.png 480w, /p/the-unseen-world-demo/media/image60_hu5106090482641154515.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="425px"
+	
+></p>
+<p>游戏菜单界面，采用符合像素风格的背景图片和简约的UI设计，图片内容稍显阴沉，采用暗色调，让玩家马上带入了对盲人话题的思考。</p>
+<p><img src="/p/the-unseen-world-demo/media/image1.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image1_hu15394622433181653470.png 480w, /p/the-unseen-world-demo/media/image1_hu9040481999716760093.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>游戏中，玩家视距很小，从而体验到盲人生活的艰辛。在不断克服困难升级的过程中，玩家的视野逐渐明朗，因此通关界面设计成一种重见光明的感觉。</p>
+<p><img src="/p/the-unseen-world-demo/media/image20.png"
+	width="1486"
+	height="830"
+	srcset="/p/the-unseen-world-demo/media/image20_hu7993395185012249017.png 480w, /p/the-unseen-world-demo/media/image20_hu3016778371901103336.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="429px"
+	
+></p>
+<h3 id="游戏文案设计">游戏文案设计
+</h3><p>游戏中的文案分为日常场景和战斗场景，日常场景中添加文案的方法主要是通过给可交互对象附加NPC Controller脚本实现的，这个脚本用来管理任何地图上可交互对象的行为，包括与玩家的交互和对话，</p>
+\[SerializeField\]<p>使文本内容可在 Inspector 中显示和编辑：</p>
+<p><img src="/p/the-unseen-world-demo/media/image61.png"
+	width="755"
+	height="710"
+	srcset="/p/the-unseen-world-demo/media/image61_hu3244493256907755326.png 480w, /p/the-unseen-world-demo/media/image61_hu6112156712758858970.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="106"
+		data-flex-basis="255px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image62.png"
+	width="806"
+	height="788"
+	srcset="/p/the-unseen-world-demo/media/image62_hu14965244713619540791.png 480w, /p/the-unseen-world-demo/media/image62_hu858679104664430064.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="102"
+		data-flex-basis="245px"
+	
+></p>
+<p>DialogManager 脚本则是管理对话框的显示和对话文本的逐字显示效果，包括延时和打字机效果等等：</p>
+<p><img src="/p/the-unseen-world-demo/media/image63.png"
+	width="663"
+	height="945"
+	srcset="/p/the-unseen-world-demo/media/image63_hu578838977397819973.png 480w, /p/the-unseen-world-demo/media/image63_hu10051236383019934697.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="70"
+		data-flex-basis="168px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image64.png"
+	width="703"
+	height="792"
+	srcset="/p/the-unseen-world-demo/media/image64_hu15420569119450129437.png 480w, /p/the-unseen-world-demo/media/image64_hu3605306512382131407.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="88"
+		data-flex-basis="213px"
+	
+></p>
+<p>DialogBox对象的UI则是这样设计的，日常文本都会被显示在这里：</p>
+<p><img src="/p/the-unseen-world-demo/media/image65.png"
+	width="1060"
+	height="601"
+	srcset="/p/the-unseen-world-demo/media/image65_hu6511960966133631830.png 480w, /p/the-unseen-world-demo/media/image65_hu665804310972513922.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="176"
+		data-flex-basis="423px"
+	
+></p>
+<p>这样，当我们想要给一个NPC添加对话文本时只需要将Layer设为NPC，</p>
+<p><img src="/p/the-unseen-world-demo/media/image66.png"
+	width="572"
+	height="96"
+	srcset="/p/the-unseen-world-demo/media/image66_hu9869618782325689714.png 480w, /p/the-unseen-world-demo/media/image66_hu290967287363592380.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="595"
+		data-flex-basis="1430px"
+	
+></p>
+<p>并且拖入NPC Controller脚本设置文本即可，每一个element代表一段对话。</p>
+<p><img src="/p/the-unseen-world-demo/media/image67.png"
+	width="570"
+	height="504"
+	srcset="/p/the-unseen-world-demo/media/image67_hu1126385292721315482.png 480w, /p/the-unseen-world-demo/media/image67_hu7840028114572903235.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="113"
+		data-flex-basis="271px"
+	
+></p>
+<p>战斗部分的文本不同于日常文本，内容都是直接在代码里设置的。起到和DialogManager同等作用的是BattleDialogBox，他要负责很多不同位置文本对象的显示：</p>
+<p><img src="/p/the-unseen-world-demo/media/image68.png"
+	width="308"
+	height="118"
+	srcset="/p/the-unseen-world-demo/media/image68_hu16005412595404939860.png 480w, /p/the-unseen-world-demo/media/image68_hu12426020700468150680.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="261"
+		data-flex-basis="626px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image69.png"
+	width="712"
+	height="934"
+	srcset="/p/the-unseen-world-demo/media/image69_hu16934402171983057902.png 480w, /p/the-unseen-world-demo/media/image69_hu16026321701205579398.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="76"
+		data-flex-basis="182px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image70.png"
+	width="580"
+	height="682"
+	srcset="/p/the-unseen-world-demo/media/image70_hu5480701370178393357.png 480w, /p/the-unseen-world-demo/media/image70_hu3349959554958861245.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="85"
+		data-flex-basis="204px"
+	
+></p>
+<h3 id="游戏动画设计">游戏动画设计
+</h3><p>设计角色移动动画：</p>
+<p>在 Inspector 中，单击Add Component 按钮并添加 Animator 组件。</p>
+<p>在文件夹中，右键单击并从上下文菜单中选择 Create &gt; Animator Controller，添加到角色预制件上的 Animator 中。</p>
+<p><img src="/p/the-unseen-world-demo/media/image71.png"
+	width="478"
+	height="271"
+	srcset="/p/the-unseen-world-demo/media/image71_hu973272930562246367.png 480w, /p/the-unseen-world-demo/media/image71_hu15959257655169715760.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="176"
+		data-flex-basis="423px"
+	
+></p>
+<p>选择 Window &gt; Animation &gt; Animation 打开 Animation 窗口。</p>
+<p>将素材拖放到 Animation 窗口中。此时将使用四个spirit来创建一段动画。</p>
+<p>将 Samples 值设置为 6 即可使动画每秒仅更改 6 次.</p>
+<p><img src="/p/the-unseen-world-demo/media/image72.png"
+	width="1132"
+	height="304"
+	srcset="/p/the-unseen-world-demo/media/image72_hu17583754580438252225.png 480w, /p/the-unseen-world-demo/media/image72_hu1912134497345435415.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="372"
+		data-flex-basis="893px"
+	
+></p>
+<p>创建动画，窗口左上方的当前动画名称，选择 Create New Clip。对其他奔跑方向的动画重复上述操作。</p>
+<p><img src="/p/the-unseen-world-demo/media/image73.png"
+	width="874"
+	height="161"
+	srcset="/p/the-unseen-world-demo/media/image73_hu10566627596772265637.png 480w, /p/the-unseen-world-demo/media/image73_hu8817949236628312070.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="542"
+		data-flex-basis="1302px"
+	
+></p>
+<p>编辑 Controller，选择菜单：Windows &gt; Animation &gt; Animator。</p>
+<p>Animator 分为两个部分，左侧是 Layers 和 Parameters，右侧是Animation State Machine。</p>
+<p><img src="/p/the-unseen-world-demo/media/image74.png"
+	width="1068"
+	height="569"
+	srcset="/p/the-unseen-world-demo/media/image74_hu13628144544835832666.png 480w, /p/the-unseen-world-demo/media/image74_hu1791267853194463510.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="187"
+		data-flex-basis="450px"
+	
+></p>
+<p>选择 Create State &gt; From New Blend Tree，使用混合树，可以根据参数来混合多段动画。</p>
+<p><img src="/p/the-unseen-world-demo/media/image75.png"
+	width="1070"
+	height="552"
+	srcset="/p/the-unseen-world-demo/media/image75_hu16243637982605281164.png 480w, /p/the-unseen-world-demo/media/image75_hu8030645951333550162.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="193"
+		data-flex-basis="465px"
+	
+></p>
+<p>Blend Tree 使用两个参数来控制水平和垂直方向的更改，因此将 Blend Type 设置为 2D Simple Directional。添加参数 Move X 和 Move Y。</p>
+<p><img src="/p/the-unseen-world-demo/media/image76.png"
+	width="254"
+	height="164"
+	srcset="/p/the-unseen-world-demo/media/image76_hu2572921379563616456.png 480w, /p/the-unseen-world-demo/media/image76_hu46612400101679847.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="154"
+		data-flex-basis="371px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image77.png"
+	width="491"
+	height="123"
+	srcset="/p/the-unseen-world-demo/media/image77_hu5935432712970570340.png 480w, /p/the-unseen-world-demo/media/image77_hu10343391606066980117.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="399"
+		data-flex-basis="958px"
+	
+></p>
+<p>将四段动画剪辑拖放到名为 Motion 的四个字段中，并将各个 Pos X 和 Pos Y 值设置为相应的方向，如下所示：</p>
+<p>Left：Pos X = -1 Pos Y = 0</p>
+<p>Right：Pos X = 1 Pos Y = 0</p>
+<p>Up：Pos X = 0 Pos Y = 1</p>
+<p>Down：Pos X = 0 Pos Y = -1</p>
+<p>该图像表示混合，其中每个蓝色菱形表示一个剪辑，红色点是由 2 个参数的值给出的位置。</p>
+<p><img src="/p/the-unseen-world-demo/media/image78.png"
+	width="509"
+	height="850"
+	srcset="/p/the-unseen-world-demo/media/image78_hu8234014695117038421.png 480w, /p/the-unseen-world-demo/media/image78_hu3909039698360502242.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="59"
+		data-flex-basis="143px"
+	
+></p>
+<p>将参数发送到 Animator Controller：通过 Animator 上的 SetFloat 函数将参数值发送到 Animator。</p>
+<p><img src="/p/the-unseen-world-demo/media/image79.png"
+	width="560"
+	height="237"
+	srcset="/p/the-unseen-world-demo/media/image79_hu15235865542410425952.png 480w, /p/the-unseen-world-demo/media/image79_hu5797228694801642368.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="236"
+		data-flex-basis="567px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image80.png"
+	width="482"
+	height="134"
+	srcset="/p/the-unseen-world-demo/media/image80_hu9870255809486665136.png 480w, /p/the-unseen-world-demo/media/image80_hu11989701227393014496.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="359"
+		data-flex-basis="863px"
+	
+></p>
+<p>设置过渡条件：从Idle状态到Walk状态的条件是isMoving为true，反之亦然。</p>
+<p><img src="/p/the-unseen-world-demo/media/image81.png"
+	width="935"
+	height="617"
+	srcset="/p/the-unseen-world-demo/media/image81_hu8198537283398958125.png 480w, /p/the-unseen-world-demo/media/image81_hu6531855307305922571.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="151"
+		data-flex-basis="363px"
+	
+></p>
+<p>在PlayerController脚本中设置这个布尔变量。</p>
+<p><img src="/p/the-unseen-world-demo/media/image82.png"
+	width="1300"
+	height="360"
+	srcset="/p/the-unseen-world-demo/media/image82_hu5715918939129967644.png 480w, /p/the-unseen-world-demo/media/image82_hu6942503326717513155.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="361"
+		data-flex-basis="866px"
+	
+></p>
+<h2 id="游戏场景实现">游戏场景实现
+</h2><h3 id="开始结束菜单">开始/结束菜单
+</h3><p>开始菜单主要由背景图片、标题和按钮组成。</p>
+<p><img src="/p/the-unseen-world-demo/media/image1.png"
+	width="1600"
+	height="900"
+	srcset="/p/the-unseen-world-demo/media/image1_hu15394622433181653470.png 480w, /p/the-unseen-world-demo/media/image1_hu9040481999716760093.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+<p>创建一个Canvas用于构建整体画布，再在Canvas中创建Panel并重命名为Main Menu，用于布置标题和按钮等物件。</p>
+<p><img src="/p/the-unseen-world-demo/media/image83.png"
+	width="215"
+	height="202"
+	srcset="/p/the-unseen-world-demo/media/image83_hu12350435141302365238.png 480w, /p/the-unseen-world-demo/media/image83_hu2297430775310583170.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="106"
+		data-flex-basis="255px"
+	
+></p>
+<p>其中，进入游戏按钮和退出游戏按钮的方法需绑定在Menu脚本里。</p>
+<p><img src="/p/the-unseen-world-demo/media/image84.png"
+	width="320"
+	height="246"
+	srcset="/p/the-unseen-world-demo/media/image84_hu12293157242177030827.png 480w, /p/the-unseen-world-demo/media/image84_hu3384588673592509868.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="130"
+		data-flex-basis="312px"
+	
+></p>
+<p>接着将Menu脚本拖动到Canvas的组件中，然后在button的onclick选项中选择Canvas下的Menu类中的函数方法。</p>
+<p><img src="/p/the-unseen-world-demo/media/image85.png"
+	width="347"
+	height="131"
+	srcset="/p/the-unseen-world-demo/media/image85_hu902974287754866903.png 480w, /p/the-unseen-world-demo/media/image85_hu13057305149859198276.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="264"
+		data-flex-basis="635px"
+	
+></p>
+<p>为了按钮效果更加直观且美观，可以为按钮范围的基底选一个浅黄色的色调。并将按钮本身的常态颜色设置为完全透明，而高亮、选择和取消选择为半透明，按下按钮后为1/4透明。</p>
+<p><img src="/p/the-unseen-world-demo/media/image86.png"
+	width="396"
+	height="605"
+	srcset="/p/the-unseen-world-demo/media/image86_hu9465024333379524205.png 480w, /p/the-unseen-world-demo/media/image86_hu3790143030239707558.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="65"
+		data-flex-basis="157px"
+	
+></p>
+<p>对于教程按钮，选择再建立一层Canvas用于覆盖到原来的Canvas之上，上面显示教程内容，然后通关按钮触发该Canvas的关闭和打开。</p>
+<p><img src="/p/the-unseen-world-demo/media/image87.png"
+	width="195"
+	height="100"
+	srcset="/p/the-unseen-world-demo/media/image87_hu13299963782511831753.png 480w, /p/the-unseen-world-demo/media/image87_hu11386994613560938828.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="195"
+		data-flex-basis="468px"
+	
+></p>
+<p>建立一个TutorialManager脚本用于控制教程界面的打开与关闭，并应用到对应的button上。</p>
+<p><img src="/p/the-unseen-world-demo/media/image88.png"
+	width="362"
+	height="265"
+	srcset="/p/the-unseen-world-demo/media/image88_hu4208962589649865863.png 480w, /p/the-unseen-world-demo/media/image88_hu1344972448526353723.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="136"
+		data-flex-basis="327px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image89.png"
+	width="365"
+	height="392"
+	srcset="/p/the-unseen-world-demo/media/image89_hu1362999418929540253.png 480w, /p/the-unseen-world-demo/media/image89_hu254044072053587532.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="93"
+		data-flex-basis="223px"
+	
+></p>
+<p>为了让按钮能够被键盘操作，还需要另外将初始选中按钮拖动到EventSystem中，例如让进入菜单页面的时候，开始游戏显示为被选中但未按下的状态。</p>
+<p><img src="/p/the-unseen-world-demo/media/image90.png"
+	width="390"
+	height="146"
+	srcset="/p/the-unseen-world-demo/media/image90_hu9021815319934041359.png 480w, /p/the-unseen-world-demo/media/image90_hu15707275575103458635.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="267"
+		data-flex-basis="641px"
+	
+></p>
+<p>但是万一鼠标不小心点到了按钮之外的地方，选中就会丢失，因此还需要一个脚本控制按钮的初始化以及重置。编写该脚本，命名为initButton。</p>
+<p><img src="/p/the-unseen-world-demo/media/image91.png"
+	width="669"
+	height="527"
+	srcset="/p/the-unseen-world-demo/media/image91_hu5470633193360544948.png 480w, /p/the-unseen-world-demo/media/image91_hu11501896905757776681.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="126"
+		data-flex-basis="304px"
+	
+></p>
+<p>在脚本中，不断更新最后选中的GameObject，保证无论当前选中的是哪个按钮，在丢失选中对象时，可以通过Update更新回来。而在前面的步骤中已经将PlayButton选作初始选中的按钮，因此第一次更新lastSelect对象即为开始游戏按钮对象。</p>
+<p>最后需要将initButton脚本应用到Panel中，即我们工程列表中的Main Menu。</p>
+<p><img src="/p/the-unseen-world-demo/media/image92.png"
+	width="881"
+	height="246"
+	srcset="/p/the-unseen-world-demo/media/image92_hu6273747346986021620.png 480w, /p/the-unseen-world-demo/media/image92_hu614750542388812246.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="358"
+		data-flex-basis="859px"
+	
+></p>
+<p>结束菜单基本同理，只需要选择好LoadScene的参数即可，实现按钮跳转到合理的对应场景。</p>
+<p>其中，我们的场景序号分布如下图所示。每次需要更新新的场景，需要打开File -&gt; Build Settings进行场景的管理，点击Add Open
+Scenes将当前正在编辑的场景加入到场景列表中。</p>
+<p><img src="/p/the-unseen-world-demo/media/image93.png"
+	width="795"
+	height="235"
+	srcset="/p/the-unseen-world-demo/media/image93_hu1262571013241913978.png 480w, /p/the-unseen-world-demo/media/image93_hu11546358649483290670.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="338"
+		data-flex-basis="811px"
+	
+></p>
+<p>由于游戏结束需要区分游戏通关以及游戏失败，需要制作两个结束菜单。</p>
+<p><img src="/p/the-unseen-world-demo/media/image20.png"
+	width="1486"
+	height="830"
+	srcset="/p/the-unseen-world-demo/media/image20_hu7993395185012249017.png 480w, /p/the-unseen-world-demo/media/image20_hu3016778371901103336.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="429px"
+	
+></p>
+<p>游戏通关</p>
+<p><img src="/p/the-unseen-world-demo/media/image21.png"
+	width="920"
+	height="506"
+	srcset="/p/the-unseen-world-demo/media/image21_hu1405678723191895954.png 480w, /p/the-unseen-world-demo/media/image21_hu6486395430012785903.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="181"
+		data-flex-basis="436px"
+	
+></p>
+<p>游戏失败</p>
+<p>两个菜单的场景中都创建了音频对象，用于播放对应情境的音乐。设置为进入场景时就播放，仅播放一次。</p>
+<p><img src="/p/the-unseen-world-demo/media/image94.png"
+	width="889"
+	height="330"
+	srcset="/p/the-unseen-world-demo/media/image94_hu9553446796697556298.png 480w, /p/the-unseen-world-demo/media/image94_hu7974199022050123234.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="269"
+		data-flex-basis="646px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image95.png"
+	width="880"
+	height="325"
+	srcset="/p/the-unseen-world-demo/media/image95_hu4180959444486770447.png 480w, /p/the-unseen-world-demo/media/image95_hu5776167386014127496.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="270"
+		data-flex-basis="649px"
+	
+></p>
+<h3 id="引导场景">引导场景
+</h3><p>引导场景包括指引文本和NPC，文本绑定在NPC对象上，通过角色的射线检测触发。</p>
+<p><img src="/p/the-unseen-world-demo/media/image96.png"
+	width="1423"
+	height="655"
+	srcset="/p/the-unseen-world-demo/media/image96_hu11677418686643362678.png 480w, /p/the-unseen-world-demo/media/image96_hu8698979401358138714.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="217"
+		data-flex-basis="521px"
+	
+></p>
+<p>文本采用微软雅黑以显示中文。</p>
+<p><img src="/p/the-unseen-world-demo/media/image97.png"
+	width="495"
+	height="471"
+	srcset="/p/the-unseen-world-demo/media/image97_hu17726789403978738163.png 480w, /p/the-unseen-world-demo/media/image97_hu14495855798420321772.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="105"
+		data-flex-basis="252px"
+	
+></p>
+<p>在NPC脚本中定义对话框成员和对话框队列，并将对话框对象拖动至unity的inspector中。</p>
+<p><img src="/p/the-unseen-world-demo/media/image98.png"
+	width="815"
+	height="251"
+	srcset="/p/the-unseen-world-demo/media/image98_hu12973572762565760790.png 480w, /p/the-unseen-world-demo/media/image98_hu2004052129761445438.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="324"
+		data-flex-basis="779px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image99.png"
+	width="496"
+	height="148"
+	srcset="/p/the-unseen-world-demo/media/image99_hu7881055966797163152.png 480w, /p/the-unseen-world-demo/media/image99_hu6033315334820382841.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="335"
+		data-flex-basis="804px"
+	
+></p>
+<p>初始化时，令对话框进入队列中，并通过SetActive(false)令其不显示。</p>
+<p><img src="/p/the-unseen-world-demo/media/image100.png"
+	width="525"
+	height="374"
+	srcset="/p/the-unseen-world-demo/media/image100_hu3874909078916021113.png 480w, /p/the-unseen-world-demo/media/image100_hu2400789046204318900.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="140"
+		data-flex-basis="336px"
+	
+></p>
+<p>update函数播放所有对话框，通过计时器来控制播放时间。在一个计时周期结束时，如果队列dialogBoxes中还有未播放的对话框，当前对话框将被隐藏，计时器重置，然后队列中的下一个对话框被激活显示。如果队列为空，播放状态将被设置为结束。</p>
+<p><img src="/p/the-unseen-world-demo/media/image101.png"
+	width="834"
+	height="689"
+	srcset="/p/the-unseen-world-demo/media/image101_hu6651723978815299594.png 480w, /p/the-unseen-world-demo/media/image101_hu8061466684560498974.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="121"
+		data-flex-basis="290px"
+	
+></p>
+<p>DisplayDialog方法播放第一个对话框，设置对应布尔变量，update函数就会执行对话框的依次显示。如果对话框已经播放完毕，会跳转到下一场景。</p>
+<p><img src="/p/the-unseen-world-demo/media/image102.png"
+	width="696"
+	height="344"
+	srcset="/p/the-unseen-world-demo/media/image102_hu10688358272624957512.png 480w, /p/the-unseen-world-demo/media/image102_hu2846871186908412205.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="202"
+		data-flex-basis="485px"
+	
+></p>
+<p>NPC的对话框由玩家的射线触发。Raycast方法从角色的rigidbody2D位置向上偏移0.2个单位发射一个射线。射线的方向是lookDirection，长度为1.5，并且只检测标记为&quot;NPC&quot;层的物体。如果玩家与NPC的距离在射线范围内，通过hit.collider.GetComponent&lt;NonPlayerCharacter&gt;()从被击中的物体中获取NonPlayerCharacter组件，调用DisplayDialog方法来显示对话。</p>
+<p><img src="/p/the-unseen-world-demo/media/image103.png"
+	width="1378"
+	height="253"
+	srcset="/p/the-unseen-world-demo/media/image103_hu14997156452464338308.png 480w, /p/the-unseen-world-demo/media/image103_hu17140024783551367705.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="544"
+		data-flex-basis="1307px"
+	
+></p>
+<h3 id="马路场景">马路场景
+</h3><p>马路场景通过RoadController组件控制，包括文本框和导航音效。把对应的组件拖动至RoadController中。</p>
+<p><img src="/p/the-unseen-world-demo/media/image104.png"
+	width="1919"
+	height="656"
+	srcset="/p/the-unseen-world-demo/media/image104_hu9062908759951218395.png 480w, /p/the-unseen-world-demo/media/image104_hu2946582611637305507.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="292"
+		data-flex-basis="702px"
+	
+></p>
+<p>RoadController设置播放两段音频的间隔为7秒，比玩家通过马路的用时稍长。</p>
+<p>Start函数初始化AudioSource成员，获取玩家起始坐标。</p>
+<p><img src="/p/the-unseen-world-demo/media/image105.png"
+	width="763"
+	height="735"
+	srcset="/p/the-unseen-world-demo/media/image105_hu16652667866411301655.png 480w, /p/the-unseen-world-demo/media/image105_hu13627984863112124266.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="103"
+		data-flex-basis="249px"
+	
+></p>
+<p>在update函数中，计时器控制播放时间，每隔7秒转换马路状态，并控制对应的音频播放。</p>
+<p><img src="/p/the-unseen-world-demo/media/image106.png"
+	width="1159"
+	height="611"
+	srcset="/p/the-unseen-world-demo/media/image106_hu6707260875302327692.png 480w, /p/the-unseen-world-demo/media/image106_hu11947327076613832193.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="189"
+		data-flex-basis="455px"
+	
+></p>
+<p>update函数也实时检测玩家的y坐标，如果在不允许过马路的状态下，玩家位置在马路上（0-17），则重新加载此场景，如果玩家坐标大于17（通过马路），则加载下一场景。</p>
+<p><img src="/p/the-unseen-world-demo/media/image107.png"
+	width="696"
+	height="478"
+	srcset="/p/the-unseen-world-demo/media/image107_hu12907062134702166839.png 480w, /p/the-unseen-world-demo/media/image107_hu1484227872407153307.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="145"
+		data-flex-basis="349px"
+	
+></p>
+<p>在加载场景前，显示对应的文本框，提示玩家通过或失败，然后等待两秒才跳转。</p>
+<p><img src="/p/the-unseen-world-demo/media/image108.png"
+	width="460"
+	height="424"
+	srcset="/p/the-unseen-world-demo/media/image108_hu4846197167022720651.png 480w, /p/the-unseen-world-demo/media/image108_hu17226441029112394077.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="108"
+		data-flex-basis="260px"
+	
+></p>
+<h3 id="主场景">主场景
+</h3><p>主场景涉及到物体碰撞的判定、战斗事件的触发、交互层的互动、玩家视野限制、等级与视野范围的联动、玩家血量修改、主场景和战斗场景血量的一致性等。</p>
+<p>关于物体碰撞的判定，我们创建了两个Layer，BackgroundLayer和SolidLayer，能够让玩家走上去的场景画在背景层，需要判定碰撞的画在SolidLayer层。接下来在场景中创建两个Rectangular的TileMap对象，分别命名为Background和SolidObjects，用于存放绘制的背景图层和碰撞体图层。</p>
+<p><img src="/p/the-unseen-world-demo/media/image109.png"
+	width="859"
+	height="155"
+	srcset="/p/the-unseen-world-demo/media/image109_hu4485352578822005220.png 480w, /p/the-unseen-world-demo/media/image109_hu12065905855897108.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="554"
+		data-flex-basis="1330px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image110.png"
+	width="792"
+	height="360"
+	srcset="/p/the-unseen-world-demo/media/image110_hu18319541049743388334.png 480w, /p/the-unseen-world-demo/media/image110_hu11804367228027905904.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="220"
+		data-flex-basis="528px"
+	
+></p>
+<p>其中，碰撞体层需要在添加TileMap Collider 2D组件的基础上，进一步添加Composite Collider 2D组件用于复杂场景的碰撞体积判断。添加完后，会自动添加一个Rigidbody 2D组件，为了让碰撞体在地图上静止，需要修改Body Type为Static保持静态。同时需要将Tilemap Collider 2D中的Used By Composite勾上，以便能够使用复杂碰撞体的相关性质，最后将Composite Collider 2D中的Geometry Type修改为Polygons，使用多面体进行碰撞边缘的描绘，使复杂场景的碰撞更加合理。</p>
+<p><img src="/p/the-unseen-world-demo/media/image111.png"
+	width="382"
+	height="722"
+	srcset="/p/the-unseen-world-demo/media/image111_hu5066526731307722618.png 480w, /p/the-unseen-world-demo/media/image111_hu10718480315073935975.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="52"
+		data-flex-basis="126px"
+	
+></p>
+<p>接着需要编写PlayController脚本用于控制人物行走，并且根据前方是否是SolidObject层来判断能否继续往前走。</p>
+<p><img src="/p/the-unseen-world-demo/media/image112.png"
+	width="446"
+	height="584"
+	srcset="/p/the-unseen-world-demo/media/image112_hu15875038911951766769.png 480w, /p/the-unseen-world-demo/media/image112_hu18169624316662430642.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="76"
+		data-flex-basis="183px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image113.png"
+	width="1062"
+	height="556"
+	srcset="/p/the-unseen-world-demo/media/image113_hu10278178398806705696.png 480w, /p/the-unseen-world-demo/media/image113_hu7527773779245149397.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="191"
+		data-flex-basis="458px"
+	
+></p>
+<p>战斗场景我们决定使用草坪地形来触发，实现方式即是创建一个名为LongGrass的图层和GameObject，用于存放绘制的草地地形。同solidObject的设置，只是在isWalkable函数中不对grassLayer进行判断，因此人物可以走到草地上，但是却能通过OverlapCircle判断到碰撞体。利用这一点，编写一个CheckForEncounter函数，用于判断是否进入草丛，并设置百分之十的概率触发战斗事件，并让主场景的人物暂停移动。</p>
+<p><img src="/p/the-unseen-world-demo/media/image114.png"
+	width="929"
+	height="254"
+	srcset="/p/the-unseen-world-demo/media/image114_hu2523714968705734940.png 480w, /p/the-unseen-world-demo/media/image114_hu2755081031295903056.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="365"
+		data-flex-basis="877px"
+	
+></p>
+<p>接着需要编写GameObject脚本，用于控制当前场景的多个游戏状态，这里先仅描述对主场景人物移动触发战斗事件的响应。</p>
+<p><img src="/p/the-unseen-world-demo/media/image115.png"
+	width="719"
+	height="557"
+	srcset="/p/the-unseen-world-demo/media/image115_hu11479106810782775833.png 480w, /p/the-unseen-world-demo/media/image115_hu17158188910339600819.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="129"
+		data-flex-basis="309px"
+	
+></p>
+<p>在Start函数中，实现对后续所需事件的响应功能，例如战斗触发事件、NPC交互事件、战斗结束事件，以及对话框触发和关闭事件。</p>
+<p>其中，对战斗触发事件的响应以及特定NPC触发战斗事件将调用GameController中的StartBattle函数，对战斗结束事件的响应调用EndBattle函数。</p>
+<p><img src="/p/the-unseen-world-demo/media/image116.png"
+	width="889"
+	height="592"
+	srcset="/p/the-unseen-world-demo/media/image116_hu5397411444893440449.png 480w, /p/the-unseen-world-demo/media/image116_hu12640473241247008292.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="150"
+		data-flex-basis="360px"
+	
+></p>
+<p>为了做到同一个Scene存在两个画面，需要另外创建一个GameObject命名为BattleSystem用于战斗画面的布景配置，同时BattleSystem也存在一个Camera，因此在转换主世界场景和战斗场景的适合，只需要将相关的gameobject打开或关闭即可。</p>
+<p>同时，由于情景转变，键盘控制的对象也应该改变，因此需要在GameController中分配不同情景下的更新模式。</p>
+<p><img src="/p/the-unseen-world-demo/media/image117.png"
+	width="481"
+	height="360"
+	srcset="/p/the-unseen-world-demo/media/image117_hu14698506821754645684.png 480w, /p/the-unseen-world-demo/media/image117_hu15667206406732002356.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="320px"
+	
+></p>
+<p>互动层也被视作不可碰撞的层，同时需要玩家通过按键&quot;Z&quot;进行交互，触发对应的功能。</p>
+<p>告示牌、可对话的NPC都绑定了一个感叹号作为子物件，若在玩家进行互动对话后，需要在对话结束后将感叹号清除。</p>
+<p><img src="/p/the-unseen-world-demo/media/image118.png"
+	width="205"
+	height="195"
+	srcset="/p/the-unseen-world-demo/media/image118_hu5115956052103680727.png 480w, /p/the-unseen-world-demo/media/image118_hu14635677429862722773.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="105"
+		data-flex-basis="252px"
+	
+><img src="/p/the-unseen-world-demo/media/image119.png"
+	width="202"
+	height="231"
+	srcset="/p/the-unseen-world-demo/media/image119_hu9003412893361837199.png 480w, /p/the-unseen-world-demo/media/image119_hu18291862951893896552.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="87"
+		data-flex-basis="209px"
+	
+></p>
+<p>首先实现交互层的判定，在PlayController的移动函数中，添加对按键&quot;Z&quot;按下的响应，调用interact函数。</p>
+<p><img src="/p/the-unseen-world-demo/media/image120.png"
+	width="332"
+	height="92"
+	srcset="/p/the-unseen-world-demo/media/image120_hu11852718743610796583.png 480w, /p/the-unseen-world-demo/media/image120_hu7256482840377333652.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="360"
+		data-flex-basis="866px"
+	
+></p>
+<p>在interact函数中，对互动的物件进行判断，由于不同互动的物件可能需要触发不同的功能函数，因此再次对物件的名字进行特判，触发相应的功能函数。</p>
+<p><img src="/p/the-unseen-world-demo/media/image121.png"
+	width="889"
+	height="582"
+	srcset="/p/the-unseen-world-demo/media/image121_hu2776299643285391835.png 480w, /p/the-unseen-world-demo/media/image121_hu6994575231800113746.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="152"
+		data-flex-basis="366px"
+	
+></p>
+<p>接下来编写NPCController用于实现NPC等交互层对象的功能函数实现。其中，交互的NPC对象将传入是否进行对战的参数，这个参数可以在场景编辑界面对应的NPC对象的组件中进行编辑即可，部分NPC的交互会在对话后触发战斗。不论哪种，都需要在对话结束后检查交互对象是否有绑定感叹号物件，若有，则需要将其绑定的子对象一一删除，实现对话后清空叹号的效果。</p>
+<p><img src="/p/the-unseen-world-demo/media/image122.png"
+	width="687"
+	height="455"
+	srcset="/p/the-unseen-world-demo/media/image122_hu2590470920524384989.png 480w, /p/the-unseen-world-demo/media/image122_hu5853298296618652894.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="150"
+		data-flex-basis="362px"
+	
+></p>
+<p>交互触发战斗部分采用协程的函数调用方式，目的是为了让对话框等讯息结束后再触发后续功能及操作，否则功能会并发执行，引发一定程度的混乱，例如在还没看到对话框内容就进入了战斗，或者交互后交互对象直接被Destroy函数消除。</p>
+<p><img src="/p/the-unseen-world-demo/media/image123.png"
+	width="752"
+	height="312"
+	srcset="/p/the-unseen-world-demo/media/image123_hu9234251003144990561.png 480w, /p/the-unseen-world-demo/media/image123_hu14874670121748197343.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="241"
+		data-flex-basis="578px"
+	
+></p>
+<p>接着编写DialogManager脚本，用于交互NPC或者告示牌时，逐段打印显示的字幕。</p>
+<p>若没有特殊情况，脚本将从组件中获取Dialog对象，将用于展示字幕的dialogBox对象在场景中设置为打开，并且从dailog的第一条字段开始打印，打印过程是打印机效果。</p>
+<p><img src="/p/the-unseen-world-demo/media/image124.png"
+	width="471"
+	height="387"
+	srcset="/p/the-unseen-world-demo/media/image124_hu10215871268857660421.png 480w, /p/the-unseen-world-demo/media/image124_hu7155695097479331236.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="121"
+		data-flex-basis="292px"
+	
+></p>
+<p>其中，组件中获取到的Dialog如下图所示，若需要多段语句的打印，只需要点击&quot;+&ldquo;并且输入后续内容即可。</p>
+<p><img src="/p/the-unseen-world-demo/media/image125.png"
+	width="367"
+	height="211"
+	srcset="/p/the-unseen-world-demo/media/image125_hu12282271194074434040.png 480w, /p/the-unseen-world-demo/media/image125_hu1175100256624944564.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="173"
+		data-flex-basis="417px"
+	
+></p>
+<p>打印字段函数如下所示，使用了协程方法，方便在显示每个字的时候通过WaitForSeconds函数控制字间时长，同时也能保证在完全打完Dialog包含的字段前不会进行后续操作。</p>
+<p><img src="/p/the-unseen-world-demo/media/image126.png"
+	width="617"
+	height="266"
+	srcset="/p/the-unseen-world-demo/media/image126_hu17648645130613406568.png 480w, /p/the-unseen-world-demo/media/image126_hu6660004434014988150.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="231"
+		data-flex-basis="556px"
+	
+></p>
+<p>后续字段的打印通过DialogManager的HandleUpdate函数实现，在打印完一段字段后，变为停止打字的状态，方便玩家阅读文本内容，若玩家按下&quot;Z&quot;键则推进后续文本的打印。当计数变量计算到当前打印字段不是Dialog的最后字段，便继续往下打印；否则，关闭对话框并通过布尔变量isEnd控制后续操作的进行，并传递关闭对话的事件。</p>
+<p><img src="/p/the-unseen-world-demo/media/image127.png"
+	width="659"
+	height="441"
+	srcset="/p/the-unseen-world-demo/media/image127_hu4617988543947477278.png 480w, /p/the-unseen-world-demo/media/image127_hu2869219182124211136.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="149"
+		data-flex-basis="358px"
+	
+></p>
+<p>为了让玩家在主世界中更有盲人的代入感，我们考虑引入视野机制，让玩家可见范围很小。为了实现这一点，需要在Player
+&gt; Main Camera下创建一个Light 2D对象，调节其Light 2D组件数据如下图所示。</p>
+<p><img src="/p/the-unseen-world-demo/media/image128.png"
+	width="200"
+	height="57"
+	srcset="/p/the-unseen-world-demo/media/image128_hu6269346144457075479.png 480w, /p/the-unseen-world-demo/media/image128_hu10839290301432633796.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="350"
+		data-flex-basis="842px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image129.png"
+	width="880"
+	height="310"
+	srcset="/p/the-unseen-world-demo/media/image129_hu11830743204629280371.png 480w, /p/the-unseen-world-demo/media/image129_hu1962260312088830840.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="283"
+		data-flex-basis="681px"
+	
+></p>
+<p>将能见范围对象设置为Everything，便可以做到所需的视野范围效果，此时人物视距如下图所示。</p>
+<p><img src="/p/the-unseen-world-demo/media/image130.png"
+	width="286"
+	height="244"
+	srcset="/p/the-unseen-world-demo/media/image130_hu2953346557554522733.png 480w, /p/the-unseen-world-demo/media/image130_hu4727139027835228962.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="117"
+		data-flex-basis="281px"
+	
+></p>
+<p>在对战系统中，我们还引入了经验以及等级机制，为了体现玩家在体验盲人的过程中不断克服困难最后重获光明，考虑将等级与视野范围进行绑定联动。玩家每提升一个等级，便能提升一定量的视距，即Light 2D组件中的FallOff值。当FallOff值到达一定程度，玩家便通关。</p>
+<p>因此编写PlayerLightController用于获取Light 2D对象并实现对应函数功能修改Light 2D组件数值。</p>
+<p>首先通过子对象路径直接查询并获取Light 2D对象，并调用LightManager类进行初始化。</p>
+<p><img src="/p/the-unseen-world-demo/media/image131.png"
+	width="696"
+	height="386"
+	srcset="/p/the-unseen-world-demo/media/image131_hu9611226032984072108.png 480w, /p/the-unseen-world-demo/media/image131_hu1729608588925156907.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="180"
+		data-flex-basis="432px"
+	
+></p>
+<p>下面编写LightManager类，这是一个静态类，方便其他脚本文件调用其中的函数方法。其中包含了初始化赋值、增加视距FallOff以及判断视距是否达到通关条件的方法。</p>
+<p><img src="/p/the-unseen-world-demo/media/image132.png"
+	width="570"
+	height="570"
+	srcset="/p/the-unseen-world-demo/media/image132_hu5744290008653181225.png 480w, /p/the-unseen-world-demo/media/image132_hu1971019146882205768.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="100"
+		data-flex-basis="240px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image133.png"
+	width="476"
+	height="426"
+	srcset="/p/the-unseen-world-demo/media/image133_hu15386701018211248393.png 480w, /p/the-unseen-world-demo/media/image133_hu10435486595853845321.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="111"
+		data-flex-basis="268px"
+	
+></p>
+<p>接下来实现主世界的玩家Hud显示名字、血量和等级，同时完成主世界影响玩家血量的相关机制。</p>
+<p>由于战斗系统中已经创建了Hud模板，因此在主世界中可以将模板应用到UI层上，这样Hud的位置可以永远保持在屏幕左上角随着玩家移动而不变。</p>
+<p><img src="/p/the-unseen-world-demo/media/image134.png"
+	width="214"
+	height="121"
+	srcset="/p/the-unseen-world-demo/media/image134_hu10790689926637270302.png 480w, /p/the-unseen-world-demo/media/image134_hu4508423468434893250.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="176"
+		data-flex-basis="424px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image135.png"
+	width="729"
+	height="407"
+	srcset="/p/the-unseen-world-demo/media/image135_hu4528300467627502451.png 480w, /p/the-unseen-world-demo/media/image135_hu4826834196791467616.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="429px"
+	
+></p>
+<p>接着编写RPG UI的脚本文件，为Hud填充相关信息。</p>
+<p>在Start函数中，从战斗系统中读取玩家的数据，并初始化为满血，同时同步数据到Hud上用于显示姓名、血量以及等级信息。</p>
+<p><img src="/p/the-unseen-world-demo/media/image136.png"
+	width="475"
+	height="249"
+	srcset="/p/the-unseen-world-demo/media/image136_hu887752706568312240.png 480w, /p/the-unseen-world-demo/media/image136_hu10110427788936950876.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="190"
+		data-flex-basis="457px"
+	
+></p>
+<p>接着还需要在Update函数中，实时同步玩家数据信息，若玩家在某些会受伤的地形掉了血，或者是在战斗中损失了血量，都需要实时更新同步到主世界的Hud上。同时，编写游戏失败的判定，在血量小于等于0时，跳转到GameOver场景。</p>
+<p><img src="/p/the-unseen-world-demo/media/image137.png"
+	width="439"
+	height="341"
+	srcset="/p/the-unseen-world-demo/media/image137_hu12501135664817141682.png 480w, /p/the-unseen-world-demo/media/image137_hu17324589818759293107.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="128"
+		data-flex-basis="308px"
+	
+></p>
+<p>这样，在探索主世界的过程中，左上角的Hud永远都能同步玩家状态并显示出来。</p>
+<p><img src="/p/the-unseen-world-demo/media/image138.png"
+	width="1496"
+	height="836"
+	srcset="/p/the-unseen-world-demo/media/image138_hu17486115283749046247.png 480w, /p/the-unseen-world-demo/media/image138_hu9002458841972952723.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="178"
+		data-flex-basis="429px"
+	
+></p>
+<p>接着，实现主世界影响玩家血量的机制。</p>
+<p>创建Injury层，用于让走上去的玩家掉一定量的血。</p>
+<p><img src="/p/the-unseen-world-demo/media/image139.png"
+	width="317"
+	height="211"
+	srcset="/p/the-unseen-world-demo/media/image139_hu5217382140547647672.png 480w, /p/the-unseen-world-demo/media/image139_hu12598530191449382504.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="150"
+		data-flex-basis="360px"
+	
+></p>
+<p>在PlayerController里，添加走路时对Injure地形的特判，若玩家踏入该地形，有百分之十的概率会扣除一定量的血量，需要调用RPG
+UI里的对应方法。</p>
+<p><img src="/p/the-unseen-world-demo/media/image140.png"
+	width="786"
+	height="239"
+	srcset="/p/the-unseen-world-demo/media/image140_hu6512273169876872859.png 480w, /p/the-unseen-world-demo/media/image140_hu15990111216177938618.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="328"
+		data-flex-basis="789px"
+	
+></p>
+<p>接下来在RPG UI脚本中实现扣血的对应方法。获取到玩家数据以后，通过Mathf.Clamp将扣除以后的血量控制在0~MaxHP之间，同时更新Hud显示的血量。</p>
+<p><img src="/p/the-unseen-world-demo/media/image141.png"
+	width="680"
+	height="502"
+	srcset="/p/the-unseen-world-demo/media/image141_hu6094676163070167998.png 480w, /p/the-unseen-world-demo/media/image141_hu12275806084637950244.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="135"
+		data-flex-basis="325px"
+	
+></p>
+<p>还考虑加入主世界中回血的机制，通过拾取地上的水果，玩家可以恢复一定量的血量，并同步更新到玩家数据以及Hud中。</p>
+<p>创建水果的GameObject，命名为Strawberry，应用到Fruit层，并为其创建预制体。</p>
+<p><img src="/p/the-unseen-world-demo/media/image142.png"
+	width="382"
+	height="166"
+	srcset="/p/the-unseen-world-demo/media/image142_hu432314033914397818.png 480w, /p/the-unseen-world-demo/media/image142_hu2675303480712725278.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="230"
+		data-flex-basis="552px"
+	
+></p>
+<p>接着，需要为其添加Box Collider 2D组件，并修改默认添加的RigidBody组件为Static，让其静止存放在地图上，还需要勾选上Is
+Trigger选项，让其可以被玩家穿过而不会卡住。</p>
+<p><img src="/p/the-unseen-world-demo/media/image143.png"
+	width="389"
+	height="559"
+	srcset="/p/the-unseen-world-demo/media/image143_hu14727650743385709052.png 480w, /p/the-unseen-world-demo/media/image143_hu701866491019246739.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="69"
+		data-flex-basis="167px"
+	
+></p>
+<p>在PlayerController中添加CheckForFruit方法，判断玩家是否碰撞到了水果。若碰撞到了，首先获取碰撞到的对象，调用RPG UI中的恢复方法。若成功回血，则将该水果对象销毁，并播放拾取音效。</p>
+<p><img src="/p/the-unseen-world-demo/media/image144.png"
+	width="910"
+	height="280"
+	srcset="/p/the-unseen-world-demo/media/image144_hu10251445134863334263.png 480w, /p/the-unseen-world-demo/media/image144_hu15144461725147342137.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="325"
+		data-flex-basis="780px"
+	
+></p>
+<p>完善RPG UI中恢复血量的相关方法。若玩家当前血量不是满血，则可以进行回复，回复一定血量后，同步到玩家数据中，并且同步更新到Hud上显示最新玩家数据信息。</p>
+<p><img src="/p/the-unseen-world-demo/media/image145.png"
+	width="670"
+	height="545"
+	srcset="/p/the-unseen-world-demo/media/image145_hu2833211675529475222.png 480w, /p/the-unseen-world-demo/media/image145_hu18179975924835151714.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="122"
+		data-flex-basis="295px"
+	
+></p>
+<h3 id="对战场景">对战场景
+</h3><p>战斗场景主要涉及到战斗的触发和结束条件、角色的属性经验等级、招式的属性类型、队伍内部切换角色等。</p>
+<p>战斗的触发上文已有提到是通过PlayerController中主角和草地的碰撞实现的，这里有一个设计是不同区域可遇到的怪是不同的，MapArea脚本里实现了随机遇敌的逻辑：</p>
+<p><img src="/p/the-unseen-world-demo/media/image146.png"
+	width="813"
+	height="394"
+	srcset="/p/the-unseen-world-demo/media/image146_hu4203190042056677900.png 480w, /p/the-unseen-world-demo/media/image146_hu9077715497711161716.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="206"
+		data-flex-basis="495px"
+	
+></p>
+<p>有了这个脚本，我们就能自定义怪物表和等级，只要再在player控制器那里加上特定的碰撞对象判断就能完美实现随即遇敌的逻辑了：</p>
+<p><img src="/p/the-unseen-world-demo/media/image147.png"
+	width="574"
+	height="435"
+	srcset="/p/the-unseen-world-demo/media/image147_hu17463442490763506294.png 480w, /p/the-unseen-world-demo/media/image147_hu15369212568419812408.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="131"
+		data-flex-basis="316px"
+	
+></p>
+<p>整个战斗都是在BattleSystem控制下的，战斗结束自然不例外。我们需要检查战斗是否结束，并根据不同的条件触发相应的结束逻辑，我在很多位置都加了战斗结束的检查，每次都会传入敌我unit，当主角即列表第一个死亡时就会立刻结束战斗，若死的不是主角而是队伍中的一员时则会开启小队界面切人接着打（当队伍只剩主角活着的时候也是游戏结束）：</p>
+<p><img src="/p/the-unseen-world-demo/media/image148.png"
+	width="826"
+	height="455"
+	srcset="/p/the-unseen-world-demo/media/image148_hu6579076951944625826.png 480w, /p/the-unseen-world-demo/media/image148_hu403485938775930228.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="181"
+		data-flex-basis="435px"
+	
+></p>
+<p>如果死亡的单位是敌人，那么会立刻进入到经验结算环节，在当前角色吃完经验后还会切换主角上来再吃一次，同时会清除角色状态防止暴毙，最后BattleOver传入true战斗结束。</p>
+<p><img src="/p/the-unseen-world-demo/media/image149.png"
+	width="1307"
+	height="1266"
+	srcset="/p/the-unseen-world-demo/media/image149_hu7287054019359159582.png 480w, /p/the-unseen-world-demo/media/image149_hu3056882163783360447.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="103"
+		data-flex-basis="247px"
+	
+></p>
+<p>角色的属性经验等级等基础属性都是在PokemonBase.cs里实现的，比如名称、类型、基础HP等，</p>
+<p><img src="/p/the-unseen-world-demo/media/image150.png"
+	width="859"
+	height="782"
+	srcset="/p/the-unseen-world-demo/media/image150_hu387999130135766544.png 480w, /p/the-unseen-world-demo/media/image150_hu15097584796423403926.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="109"
+		data-flex-basis="263px"
+	
+></p>
+<p>每个角色的升级速度也是不同的，这里分快和中快俩种：</p>
+<p><img src="/p/the-unseen-world-demo/media/image151.png"
+	width="534"
+	height="345"
+	srcset="/p/the-unseen-world-demo/media/image151_hu482493103074251524.png 480w, /p/the-unseen-world-demo/media/image151_hu12382659324627645755.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="154"
+		data-flex-basis="371px"
+	
+></p>
+<p>Pokemon.cs管理宝可梦的动态属性，比如当前HP、经验值、当前等级、战斗时的状态、状态时间、效果提升、等级提升等等，因为代码实在太长就不全放了：<img src="/p/the-unseen-world-demo/media/image152.png"
+	width="885"
+	height="944"
+	srcset="/p/the-unseen-world-demo/media/image152_hu1042833558426029003.png 480w, /p/the-unseen-world-demo/media/image152_hu11426735675384864437.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="93"
+		data-flex-basis="225px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image153.png"
+	width="948"
+	height="558"
+	srcset="/p/the-unseen-world-demo/media/image153_hu2756353135033662660.png 480w, /p/the-unseen-world-demo/media/image153_hu8508421127070835790.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="169"
+		data-flex-basis="407px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image154.png"
+	width="816"
+	height="444"
+	srcset="/p/the-unseen-world-demo/media/image154_hu17510564498547191181.png 480w, /p/the-unseen-world-demo/media/image154_hu9413049086382991412.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="441px"
+	
+></p>
+<p>如果要创建一个新角色也可以通过之前提到的方法直接在Resources/Pokemon直接创建新角色，</p>
+<p><img src="/p/the-unseen-world-demo/media/image155.png"
+	width="1197"
+	height="289"
+	srcset="/p/the-unseen-world-demo/media/image155_hu11361099863322866913.png 480w, /p/the-unseen-world-demo/media/image155_hu6455978608680863718.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="414"
+		data-flex-basis="994px"
+	
+></p>
+<p><img src="/p/the-unseen-world-demo/media/image156.png"
+	width="612"
+	height="678"
+	srcset="/p/the-unseen-world-demo/media/image156_hu16005739454951612138.png 480w, /p/the-unseen-world-demo/media/image156_hu4142804459425435721.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="90"
+		data-flex-basis="216px"
+	
+></p>
+<p>招式的创建和之前角色创建有一些类似，在MoveBase中加了创建招式的快捷方式和定义了招式的基础属性，比如名称、类型、威力、命中率等。</p>
+<p><img src="/p/the-unseen-world-demo/media/image157.png"
+	width="814"
+	height="498"
+	srcset="/p/the-unseen-world-demo/media/image157_hu14121518141220190934.png 480w, /p/the-unseen-world-demo/media/image157_hu11038607588897203900.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="163"
+		data-flex-basis="392px"
+	
+></p>
+<p>招式类型分三种，物攻魔法状态，物攻和魔法的伤害是关于角色的攻击和特攻属性的，而状态就不是了，同时招式还有Stat相关的，作用是增幅自己或敌人的五维属性：</p>
+<p><img src="/p/the-unseen-world-demo/media/image158.png"
+	width="491"
+	height="869"
+	srcset="/p/the-unseen-world-demo/media/image158_hu13666667235117636705.png 480w, /p/the-unseen-world-demo/media/image158_hu1177909585723640337.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="56"
+		data-flex-basis="135px"
+	
+></p>
+<p>状态攻击的效果通过Condition和ConditionDB实现，Condition.cs定义了状态效果的行为<img src="/p/the-unseen-world-demo/media/image159.png"
+	width="665"
+	height="394"
+	srcset="/p/the-unseen-world-demo/media/image159_hu5978312909151019050.png 480w, /p/the-unseen-world-demo/media/image159_hu12132818260761932768.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="168"
+		data-flex-basis="405px"
+	
+></p>
+<p>ConditionDB.cs这个脚本存储所有状态效果的数据，包括战斗前判定的睡眠和冻结等状态，还有战斗后判定的中毒烧伤等等:</p>
+<p><img src="/p/the-unseen-world-demo/media/image160.png"
+	width="1285"
+	height="532"
+	srcset="/p/the-unseen-world-demo/media/image160_hu14092310431074268885.png 480w, /p/the-unseen-world-demo/media/image160_hu10713519689579781940.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="241"
+		data-flex-basis="579px"
+	
+></p>
+<p>物攻和魔法攻击的伤害计算则是在TakeDamage中实现，每次攻击还有10左右概率暴击，</p>
+<p><img src="/p/the-unseen-world-demo/media/image161.png"
+	width="1486"
+	height="1060"
+	srcset="/p/the-unseen-world-demo/media/image161_hu4045947935333500568.png 480w, /p/the-unseen-world-demo/media/image161_hu13299728358753180860.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="140"
+		data-flex-basis="336px"
+	
+></p>
+<p>然后我们就能设计效果各异的Move并放入不同角色的技能列表里了：</p>
+<p><img src="/p/the-unseen-world-demo/media/image162.png"
+	width="583"
+	height="643"
+	srcset="/p/the-unseen-world-demo/media/image162_hu10282372255467214288.png 480w, /p/the-unseen-world-demo/media/image162_hu3946400281037286680.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="90"
+		data-flex-basis="217px"
+	
+></p>
+<p><img src="/media/image163.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+>{width=&ldquo;3.8020833333333335in&rdquo;
+height=&ldquo;3.163875765529309in&rdquo;}</p>
+<p>角色切换我是首先在战斗画布里画了角色显示的UI，</p>
+<p><img src="/p/the-unseen-world-demo/media/image164.png"
+	width="926"
+	height="516"
+	srcset="/p/the-unseen-world-demo/media/image164_hu48618601818737137.png 480w, /p/the-unseen-world-demo/media/image164_hu3455867532460066115.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="430px"
+	
+></p>
+<p>然后写了一个脚本管理玩家的角色队伍，包括获取当前角色，</p>
+<p><img src="/p/the-unseen-world-demo/media/image165.png"
+	width="827"
+	height="573"
+	srcset="/p/the-unseen-world-demo/media/image165_hu10357563708904331851.png 480w, /p/the-unseen-world-demo/media/image165_hu10894850705466195502.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="346px"
+	
+></p>
+<p>在这个PartyScreen.cs脚本管理队伍界面的显示和交互。当玩家需要切换角色时，显示队伍界面供玩家选择。</p>
+<p><img src="/p/the-unseen-world-demo/media/image166.png"
+	width="691"
+	height="1255"
+	srcset="/p/the-unseen-world-demo/media/image166_hu16655975900858336514.png 480w, /p/the-unseen-world-demo/media/image166_hu12818298567524990081.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="55"
+		data-flex-basis="132px"
+	
+></p>
+<p>这个脚本管理队伍界面中每个角色的UI显示。</p>
+<p><img src="/p/the-unseen-world-demo/media/image167.png"
+	width="627"
+	height="822"
+	srcset="/p/the-unseen-world-demo/media/image167_hu5307276097623797394.png 480w, /p/the-unseen-world-demo/media/image167_hu14279958866131056937.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="76"
+		data-flex-basis="183px"
+	
+></p>
+<p>最后在BattleSystem中设置开启小队列表UI方法的位置：</p>
+<p><img src="/p/the-unseen-world-demo/media/image168.png"
+	width="592"
+	height="1001"
+	srcset="/p/the-unseen-world-demo/media/image168_hu12644239191187623231.png 480w, /p/the-unseen-world-demo/media/image168_hu9976588634772637102.png 1024w"
+	loading="lazy"
+	
+		alt="descript"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="59"
+		data-flex-basis="141px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/unity/">Unity</a>
+        
+            <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a>
+        
+    </section>
+
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 Nov 04, 2024 21:01 &#43;0800
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Vince
+    </section>
+    
+    <section class="powerby">
+        
+        
+
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script><script type="text/javascript" src="/ts/custom.89d9bb2c3c071ae8a261f67661c22b84ef67ba7b7a885dabd2bbd9ebef84ed40.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<script src="https://npm.elemecdn.com/nprogress@0.2.0/nprogress.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://npm.elemecdn.com/nprogress@0.2.0/nprogress.css" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+<div id="particles-js"></div>
+
+<script src=https://vince-cyh.github.io/background/particles.min.js></script>
+<script>
+  particlesJS.load('particles-js', 'https:\/\/vince-cyh.github.io\/background\/particlesjs-config.json', function() {
+    console.log('particles.js loaded - callback');
+  });
+</script>
+
+<style>
+  #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+</style>
+
+<style>
+  @font-face {
+    font-family: '游趣体';
+    src: url('https://vince-cyh.github.io/font/ChildFunSans-Demo.ttf') format('truetype');
+  }
+
+  :root {
+    --base-font-family: '游趣体';
+    --code-font-family: '游趣体';
+  }
+</style>
+    </body>
+</html>

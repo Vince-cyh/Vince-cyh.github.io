@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Vince</copyright>
-        <lastBuildDate>Sun, 03 Nov 2024 19:57:30 +0800</lastBuildDate><atom:link href="https://vince-cyh.github.io/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 04 Nov 2024 21:01:14 +0800</lastBuildDate><atom:link href="https://vince-cyh.github.io/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>归档</title>
         <link>https://vince-cyh.github.io/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
@@ -17,18 +17,77 @@
         </item>
         <item>
         <title>更新计划</title>
-        <link>https://vince-cyh.github.io/%E6%9B%B4%E6%96%B0%E8%AE%A1%E5%88%92/</link>
+        <link>https://vince-cyh.github.io/plan/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://vince-cyh.github.io/%E6%9B%B4%E6%96%B0%E8%AE%A1%E5%88%92/</guid>
-        <description></description>
+        <guid>https://vince-cyh.github.io/plan/</guid>
+        <description>&lt;hr&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;功能&amp;amp;美化&lt;/th&gt;
+          &lt;th&gt;完成时间&lt;/th&gt;
+          &lt;th&gt;备注&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;del&gt;引入动态背景&lt;/del&gt;&lt;/td&gt;
+          &lt;td&gt;2024.11.03&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;del&gt;菜单、卡片、卡片内嵌封面图修改为圆角&lt;/del&gt;&lt;/td&gt;
+          &lt;td&gt;2024.11.03&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;文章内嵌目录折叠展开&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;看板娘&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;del&gt;网页使用自定义鼠标&lt;/del&gt;&lt;/td&gt;
+          &lt;td&gt;2024.11.03&lt;/td&gt;
+          &lt;td&gt;素材来自&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1VM411J7h2/?spm_id_from=333.337.search-card.all.click&amp;amp;vd_source=9225d0e92bcd15a66f280fe3deceab0a&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;B站up&lt;/a&gt;，并使用 ArtCursors 魔改&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;返回顶部按钮&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;引入音乐播放器&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;del&gt;图片不会自动翻转&lt;/del&gt;&lt;/td&gt;
+          &lt;td&gt;2024.11.03&lt;/td&gt;
+          &lt;td&gt;用工具 IrfanView 修改图片的 EXIF&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;del&gt;归档页面增加标签云&lt;/del&gt;&lt;/td&gt;
+          &lt;td&gt;2024.11.04&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+</description>
         </item>
         <item>
         <title>技术链接</title>
-        <link>https://vince-cyh.github.io/%E6%8A%80%E6%9C%AF%E9%93%BE%E6%8E%A5/</link>
+        <link>https://vince-cyh.github.io/link/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://vince-cyh.github.io/%E6%8A%80%E6%9C%AF%E9%93%BE%E6%8E%A5/</guid>
+        <guid>https://vince-cyh.github.io/link/</guid>
         <description></description>
         </item>
         <item>
